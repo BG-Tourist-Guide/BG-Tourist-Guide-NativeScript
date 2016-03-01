@@ -3,8 +3,8 @@
       <ActionBar title="{{ title }}" />
   </Page.actionBar>
   <StackLayout>
-    <Label text="" />
-    <Button class="btn-success" text="Near me" />
-    <Button class="btn-success" text="Logout" />
+    <Label text="Account" class="title" />
+    <Button class="btn-success" text="Login" tap="loginBtnTap" />
+    <Button class="btn-primary" text="Register" tap="registerBtnTap" />
   </StackLayout>
 </Page>

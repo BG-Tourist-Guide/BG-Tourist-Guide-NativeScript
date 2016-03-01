@@ -22,4 +22,17 @@ class UsersService {
     
     return promise;
   }
+  
+  login(userName, password) {
+    let promise = new Promise(function (resolve, reject) {
+      resolve();
+    });
+    
+    return promise;
+  }
 }
+
+module.exports = {
+  UsersService: UsersService,
+  defaultInstance: new UsersService()
+};
