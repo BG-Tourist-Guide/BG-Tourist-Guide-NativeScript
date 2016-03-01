@@ -1,7 +1,7 @@
 'use strict';
 
 let Observable = require('data/observable').Observable;
-let users = require('../../../services/users-service').defaultInstance;
+let users = require('../../../web/services/users-service').defaultInstance;
 
 class LoginViewModel extends Observable {
   constructor() {
@@ -16,7 +16,9 @@ class LoginViewModel extends Observable {
     
     let promise = new Promise(function (resolve, reject) {
       users.login(that.userName, that.password)
-        .then(resolve, reject);
+        .then(function (data) {
+          resolve(data);
+        }, reject);
     });
 
     return promise;

@@ -5,6 +5,6 @@
   <StackLayout>
     <Label text="" />
     <Button class="btn-success" text="Near me" />
-    <Button class="btn-success" text="Logout" />
+    <Button class="btn-success" text="Logout" tap="logoutBtnTap" />
   </StackLayout>
 </Page>
