@@ -1,4 +1,6 @@
 var observable = require("data/observable");
+var custom = require('../common/custom-animations');
+
 var HelloWorldModel = (function (_super) {
     __extends(HelloWorldModel, _super);
     function HelloWorldModel() {
@@ -6,7 +8,11 @@ var HelloWorldModel = (function (_super) {
         this.counter = 42;
         this.set("message", this.counter + " taps left");
     }
-    HelloWorldModel.prototype.tapAction = function () {
+    HelloWorldModel.prototype.tapAction = function (args) {
+      var btn = args.object;
+      
+      btn.animateTap();
+      
         this.counter--;
         if (this.counter <= 0) {
             this.set("message", "Hoorraaay! You unlocked the NativeScript clicker achievement!");
