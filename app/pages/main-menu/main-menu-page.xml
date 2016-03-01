@@ -1,0 +1,9 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <Page.actionBar>
+      <ActionBar title="{{ title }}" />
+  </Page.actionBar>
+  <StackLayout>
+    <Label text="" />
+    <Button class="btn-success" text="Near me" />
+  </StackLayout>
+</Page>
