@@ -1,6 +1,6 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true">
   <StackLayout>
-    <Label text="{{ title }}" class="title" />
+    <Label class="title" text="{{ title }}" class="title" />
     <TextField hint="Username" text="{{ userName }}" />
     <TextField hint="Password" text="{{ password }}" secure="true" />
     <Button class="btn-success" text="Login" tap="loginBtnTap" />

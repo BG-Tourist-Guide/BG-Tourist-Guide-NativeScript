@@ -1,6 +1,6 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true">
   <StackLayout>
-    <Label text="{{ title }}" />
+    <Label class="title" text="{{ title }}" />
     <Button class="btn-success" text="Near me" tap="nearMeBtnTap" />
     <Button class="btn-success" text="Logout" tap="logoutBtnTap" />
   </StackLayout>
