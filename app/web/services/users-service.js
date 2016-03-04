@@ -19,7 +19,6 @@ class UsersService {
             resolve(response.result);
           }
           else {
-            console.log('-------Reject');
             reject(response);
           }
         }, reject);
