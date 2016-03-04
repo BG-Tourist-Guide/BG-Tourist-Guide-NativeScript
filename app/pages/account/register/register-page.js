@@ -1,6 +1,6 @@
 'use strict';
 
-let loginViewModel = require('./login-view-model');
+let loginViewModel = require('./register-view-model');
 let customAnimations = require('../../../common/custom-animations');
 let dialogs = require('ui/dialogs');
 let frame = require('ui/frame');
@@ -9,21 +9,21 @@ let viewModel;
 
 function pageLoaded(args) {
   let page = args.object;
-  viewModel = new loginViewModel.LoginViewModel();
+  viewModel = new loginViewModel.RegisterViewModel();
 
   page.bindingContext = viewModel;
 }
 
-function loginBtnTap(args) {
+function registerBtnTap(args) {
   let button = args.object;
   button.animateTap();
   loader.show();
 
-  viewModel.login()
+  viewModel.register()
     .then(function () {
       loader.hide();
       dialogs.alert({
-        title: 'Login successfull.',
+        title: 'Registration successfull.',
         message: 'You can now start using the application.',
         okButtonText: 'OK'
       })
@@ -36,7 +36,7 @@ function loginBtnTap(args) {
     }, function (err) {
       loader.hide();
       dialogs.alert({
-        title: 'Login failed.',
+        title: 'Registration failed.',
         message: err.message,
         okButtonText: 'OK'
       });
@@ -45,5 +45,5 @@ function loginBtnTap(args) {
 
 module.exports = {
   pageLoaded,
-  loginBtnTap
+  registerBtnTap
 };

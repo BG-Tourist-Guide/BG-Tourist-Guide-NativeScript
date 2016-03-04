@@ -1,0 +1,8 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true">
+  <StackLayout>
+    <Label class="title" text="{{ title }}" class="title" />
+    <TextField hint="Username" text="{{ userName }}" />
+    <TextField hint="Password" text="{{ password }}" secure="true" />
+    <Button class="btn-success" text="Register" tap="registerBtnTap" />
+  </StackLayout>
+</Page>

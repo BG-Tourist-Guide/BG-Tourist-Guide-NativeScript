@@ -22,7 +22,19 @@ function loginBtnTap(args) {
     });
 }
 
+function registerBtnTap(args) {
+  let button = args.object;
+  button.animateTap();
+
+  frame.topmost()
+    .navigate({
+      backstackVisible: false,
+      moduleName: './pages/account/register/register-page'
+    });
+}
+
 module.exports = {
   pageLoaded,
-  loginBtnTap
+  loginBtnTap,
+  registerBtnTap
 };

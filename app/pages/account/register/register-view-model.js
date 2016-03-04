@@ -3,19 +3,22 @@
 let Observable = require('data/observable').Observable;
 let users = require('../../../web/services/users-service').defaultInstance;
 
-class LoginViewModel extends Observable {
+class RegisterViewModel extends Observable {
   constructor() {
     super();
-    this.title = 'Login';
+    this.title = 'Register';
     this.userName = '';
     this.password = '';
   }
 
-  login() {
+  register() {
     let that = this;
-    
+
     let promise = new Promise(function (resolve, reject) {
-      users.login(that.userName, that.password)
+      users.register(that.userName, that.password)
+        .then(function (data) {
+          return users.login(that.userName, that.password);
+        }, reject)
         .then(function (data) {
           resolve(data);
         }, reject);
@@ -26,6 +29,6 @@ class LoginViewModel extends Observable {
 }
 
 module.exports = {
-  LoginViewModel: LoginViewModel,
-  defaultInstance: new LoginViewModel()
+  RegisterViewModel: RegisterViewModel,
+  defaultInstance: new RegisterViewModel()
 };
