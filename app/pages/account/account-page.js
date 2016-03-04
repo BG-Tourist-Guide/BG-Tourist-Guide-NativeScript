@@ -14,9 +14,12 @@ function pageLoaded(args) {
 function loginBtnTap(args) {
   let button = args.object;
   button.animateTap();
-  
+
   frame.topmost()
-    .navigate('./pages/account/login/login-page');
+    .navigate({
+      backstackVisible: false,
+      moduleName: './pages/account/login/login-page'
+    });
 }
 
 module.exports = {

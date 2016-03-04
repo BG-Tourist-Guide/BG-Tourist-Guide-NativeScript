@@ -38,7 +38,7 @@ function logoutBtnTap(args) {
 
   frame.topmost()
     .navigate({
-      clearHistory: true,
+      backstackVisible: true,
       moduleName: './pages/account/account-page'
     });
 }
