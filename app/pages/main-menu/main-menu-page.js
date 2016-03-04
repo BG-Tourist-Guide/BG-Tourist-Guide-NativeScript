@@ -7,11 +7,14 @@ let viewModel;
 
 function pageLoaded(args) {
   let page = args.object;
-  viewModel = mainMenuViewModel.defaultInstance;
+  viewModel = new mainMenuViewModel.MainMenuViewModel();
 
   if (!viewModel.currentUser) {
     frame.topmost()
-      .navigate('./pages/account/account-page');
+      .navigate({
+        backstackVisible: false,
+        moduleName: './pages/account/account-page'
+      });
 
     return;
   }

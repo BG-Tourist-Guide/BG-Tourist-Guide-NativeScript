@@ -27,7 +27,6 @@ function loginBtnTap(args) {
         .then(function () {
           frame.topmost()
             .navigate({
-              clearHistory: true,
               moduleName: './pages/main-menu/main-menu-page'
             });
         });
