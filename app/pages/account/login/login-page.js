@@ -4,6 +4,7 @@ let loginViewModel = require('./login-view-model');
 let customAnimations = require('../../../common/custom-animations');
 let dialogs = require('ui/dialogs');
 let frame = require('ui/frame');
+let loader = require('nativescript-loading-indicator');
 let viewModel;
 
 function pageLoaded(args) {
@@ -16,9 +17,11 @@ function pageLoaded(args) {
 function loginBtnTap(args) {
   let button = args.object;
   button.animateTap();
+  loader.show();
 
   viewModel.login()
     .then(function () {
+      loader.hide();
       dialogs.alert({
         title: 'Login successfull.',
         message: 'You can now start using the application.',
@@ -31,6 +34,7 @@ function loginBtnTap(args) {
             });
         });
     }, function (err) {
+      loader.hide();
       dialogs.alert({
         title: 'Login failed.',
         message: err.message,
