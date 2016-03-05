@@ -4,7 +4,7 @@ let http = require('http');
 let users = require('../helpers/users-helper').defaultInstance;
 
 class Requester {
-  getJsonAsync(url) {
+  getJsonAsync(url, ignoreBaseUrl) {
     let promise = new Promise(function (resolve, reject) {
       let user = users.getCurrentUserFromLocalStorage();
       let headers = {
@@ -15,8 +15,14 @@ class Requester {
         headers.Authentication = 'Bearer ' + user.token;
       }
 
+      let finalUrl = BASE_URL + url;
+
+      if (ignoreBaseUrl) {
+        finalUrl = url;
+      }
+
       http.request({
-        url: BASE_URL + url,
+        url: finalUrl,
         method: 'GET',
         headers: headers
       })

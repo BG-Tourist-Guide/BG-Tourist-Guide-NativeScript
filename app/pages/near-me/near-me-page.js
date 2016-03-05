@@ -19,6 +19,8 @@ function pageLoaded(args) {
     .then(function (data) {
       loader.hide();
     }, function (err) {
+      console.log(err);
+      console.dir(err);
       loader.hide();
       dialogs.alert({
         title: 'Error',
@@ -39,6 +41,11 @@ function searchBtnTap(args) {
       loader.hide();
     }, function (err) {
       loader.hide();
+      dialogs.alert({
+        title: 'Error',
+        message: 'Cannot find your location or there is no connection to the server.',
+        okButtonText: 'OK'
+      });
     });
 }
 
