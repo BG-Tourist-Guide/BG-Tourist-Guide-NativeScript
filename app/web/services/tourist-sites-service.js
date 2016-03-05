@@ -23,7 +23,7 @@ class TouristSitesService {
         .getJsonAsync(`/api/tourist-sites/near-me?latitude=${position.latitude}&longitude=${position.longitude}&radius=${radius}`)
         .then(function (response) {
           responseHelper.handleResponseInPromise(response, resolve, reject);
-        });
+        }, reject);
     });
 
     return promise;

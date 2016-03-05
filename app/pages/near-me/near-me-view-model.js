@@ -2,9 +2,8 @@
 
 let Observable = require('data/observable').Observable;
 let ObservableArray = require('data/observable-array').ObservableArray;
-let geolocation = require('nativescript-geolocation');
+let geolocation = require('../../helpers/geolocation-helper.js').defaultInstance;
 let touristSitesService = require('../../web/services/tourist-sites-service').defaultInstance;
-let enums = require('ui/enums');
 
 class NearMeViewModel extends Observable {
   constructor() {
@@ -26,21 +25,13 @@ class NearMeViewModel extends Observable {
       }
 
       geolocation.getCurrentLocation({
-        desiredAccuracy: enums.Accuracy.high,
         updateDistance: 10,
         maximumAge: 3000,
-        timeout: 20 * 1000
+        timeout: 5 * 1000
       }).
         then(function (location) {
-          console.log('-------Location');
           return touristSitesService.getTouristSitesNearPosition(location, that.radius);
-        }, function (err) {
-          console.log('-------Error when getting the current location.');
-          console.log(err);
-          reject({
-            message: err
-          });
-        })
+        }, reject)
         .then(function (data) {
           data.forEach(function (item) {
             that.touristSites.push(item);
