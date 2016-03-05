@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "nativescript-effects": "^0.3.0",
+    "nativescript-geolocation": "0.0.8",
     "nativescript-loading-indicator": "^1.0.1",
     "sha1": "^1.1.1",
     "tns-core-modules": "1.6.2"
