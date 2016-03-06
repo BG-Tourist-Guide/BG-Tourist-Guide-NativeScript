@@ -3,7 +3,8 @@
       <Label text="{{ radius + ' km' }}" fontSize="26" horizontalAlignment="center"/>
       <Slider minValue="5" maxValue="100" value="{{ radius }}" />
     <Button text="Search" tap="searchBtnTap" class="btn-primary" width="180" />
-    <ListView items="{{ touristSites }}" itemTap="onItemTap" marginTop="10">
+    
+    <ListView items="{{ touristSites }}" itemTap="itemTap" marginTop="10">
         <ListView.itemTemplate>
           <GridLayout rows="*" columns="4*, 1*" padding="10">
                 <Label text="{{ title }}" row="0" col="0" textWrap="true" fontSize="18" />

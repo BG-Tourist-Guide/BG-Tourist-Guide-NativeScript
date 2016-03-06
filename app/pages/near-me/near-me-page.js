@@ -49,7 +49,20 @@ function searchBtnTap(args) {
     });
 }
 
+function itemTap(args) {
+  let index = args.index;
+
+  let touristSite = viewModel.touristSites.getItem(index);
+
+  frame.topmost()
+    .navigate({
+      moduleName: './pages/tourist-site-details/tourist-site-details-page',
+      context: touristSite
+    });
+}
+
 module.exports = {
   pageLoaded,
-  searchBtnTap
+  searchBtnTap,
+  itemTap
 };
