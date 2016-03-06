@@ -9,13 +9,22 @@ let viewModel;
 
 function pageLoaded(args) {
   let page = args.object;
-  viewModel = new touristSiteDetailsViewModel.TouristSiteDetailsViewModel();
+
+  if (!viewModel) {
+    viewModel = new touristSiteDetailsViewModel.TouristSiteDetailsViewModel();
+  }
 
   page.bindingContext = viewModel;
 }
 
 function navigatedTo(args) {
-  console.dir(args.context);
+  let touristSite = args.context;
+
+  if (!viewModel) {
+    viewModel = new touristSiteDetailsViewModel.TouristSiteDetailsViewModel();
+  }
+
+  viewModel.set('touristSite', touristSite);
 }
 
 module.exports = {

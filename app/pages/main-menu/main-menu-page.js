@@ -22,6 +22,14 @@ function pageLoaded(args) {
   page.bindingContext = viewModel;
 }
 
+function allBtnTap(args) {
+  let button = args.object;
+  button.animateTap();
+
+  frame.topmost()
+    .navigate('./pages/tourist-sites/all-tourist-sites/all-tourist-sites-page');
+}
+
 function nearMeBtnTap(args) {
   let button = args.object;
   button.animateTap();
@@ -45,6 +53,7 @@ function logoutBtnTap(args) {
 
 module.exports = {
   pageLoaded,
+  allBtnTap,
   nearMeBtnTap,
   logoutBtnTap
 };
