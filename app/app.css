@@ -52,3 +52,25 @@ button {
   background-color: #033c73;
   border-color: #033c73;
 }
+
+.btn-sm {
+ font-size: 14;
+ padding: 0 10; 
+}
+
+.blue-label {
+  vertical-align: center;
+  horizontal-align: center;
+  color: #44bfff;
+  font-size: 18;
+}
+
+.stats-label {
+  font-size: 36;
+  vertical-align: center;
+}
+
+.stats-label-sm {
+  font-size: 20;
+  vertical-align: center;
+}

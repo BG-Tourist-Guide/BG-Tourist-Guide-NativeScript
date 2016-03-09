@@ -3,7 +3,7 @@ let viewModule = require('ui/core/view');
 let animations = require('nativescript-effects');
 
 viewModule.View.prototype.animateTap = function (duration, opacity) {
-  duration = duration || 50;
+  duration = duration || 25;
   opacity = opacity || 0.8;
   
   let that = this;

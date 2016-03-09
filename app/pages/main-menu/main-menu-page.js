@@ -8,7 +8,7 @@ let viewModel;
 function pageLoaded(args) {
   let page = args.object;
   viewModel = new mainMenuViewModel.MainMenuViewModel();
-
+  
   if (!viewModel.currentUser) {
     frame.topmost()
       .navigate({
