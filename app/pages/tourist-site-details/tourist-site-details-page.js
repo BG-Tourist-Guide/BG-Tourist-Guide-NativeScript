@@ -7,7 +7,7 @@ let viewModel;
 
 function pageLoaded(args) {
   let page = args.object;
-  
+
   page.bindingContext = viewModel;
 }
 
@@ -17,7 +17,17 @@ function navigatingTo(args) {
   viewModel = new touristSiteDetailsViewModel.TouristSiteDetailsViewModel(touristSite);
 }
 
+function rateBtnTap(args) {
+  let page = args.object.page;
+
+  page.showModal('./modals/rate-tourist-site/rate-tourist-site-modal', viewModel.touristSite, function(args) {
+    console.log('-------Close callback args');
+    console.dir(args);
+  }, false);
+}
+
 module.exports = {
   pageLoaded,
-  navigatingTo
+  navigatingTo,
+  rateBtnTap
 };
