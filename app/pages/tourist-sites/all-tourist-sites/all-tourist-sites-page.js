@@ -5,21 +5,25 @@ let customAnimations = require('../../../common/custom-animations');
 let loader = require('nativescript-loading-indicator');
 let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
+let isBackNavigation = false;
 let viewModel;
 
 function pageLoaded(args) {
   let page = args.object;
-  viewModel = new allTouristSitesViewModel.AllTouristSitesViewModel();
 
-  page.bindingContext = viewModel;
+  if (!isBackNavigation) {
+    viewModel = new allTouristSitesViewModel.AllTouristSitesViewModel();
 
-  loadTouristSites();
+    page.bindingContext = viewModel;
+
+    loadTouristSites();
+  }
 }
 
 function loadTouristSites(args) {
   viewModel.loadTouristSites()
-    .then(function (data) {
-    }, function (err) {
+    .then(function(data) {
+    }, function(err) {
       dialogs.alert({
         title: 'Error',
         message: 'Cannot load tourist sites.',
@@ -40,8 +44,13 @@ function itemTap(args) {
     });
 }
 
+function pageNavigatingTo(args) {
+  isBackNavigation = args.isBackNavigation;
+}
+
 module.exports = {
   pageLoaded,
+  pageNavigatingTo,
   loadTouristSites,
   itemTap
 };

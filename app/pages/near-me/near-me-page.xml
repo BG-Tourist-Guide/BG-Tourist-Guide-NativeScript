@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" navigatingTo="pageNavigatingTo" actionBarHidden="true">
   <StackLayout padding="10">
       <Label text="{{ radius + ' km' }}" fontSize="26" horizontalAlignment="center"/>
       <Slider minValue="5" maxValue="100" value="{{ radius }}" />

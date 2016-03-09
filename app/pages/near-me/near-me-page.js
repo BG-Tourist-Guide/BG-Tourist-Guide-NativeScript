@@ -5,29 +5,31 @@ let customAnimations = require('../../common/custom-animations');
 let loader = require('nativescript-loading-indicator');
 let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
+let isBackNavigation = false;
 let viewModel;
 
-function pageLoaded(args) {
+function pageLoaded(args, a) {
   let page = args.object;
-  viewModel = nearMeViewModel.defaultInstance;
 
-  page.bindingContext = viewModel;
+  if (!isBackNavigation) {
+    viewModel = nearMeViewModel.defaultInstance;
 
-  loader.show();
+    page.bindingContext = viewModel;
 
-  viewModel.findTouristSitesNearMe()
-    .then(function (data) {
-      loader.hide();
-    }, function (err) {
-      console.log(err);
-      console.dir(err);
-      loader.hide();
-      dialogs.alert({
-        title: 'Error',
-        message: 'Cannot find your location or there is no connection to the server.',
-        okButtonText: 'OK'
+    loader.show();
+
+    viewModel.findTouristSitesNearMe()
+      .then(function(data) {
+        loader.hide();
+      }, function(err) {
+        loader.hide();
+        dialogs.alert({
+          title: 'Error',
+          message: 'Cannot find your location or there is no connection to the server.',
+          okButtonText: 'OK'
+        });
       });
-    });
+  }
 }
 
 function searchBtnTap(args) {
@@ -37,9 +39,9 @@ function searchBtnTap(args) {
   loader.show();
 
   viewModel.findTouristSitesNearMe()
-    .then(function (data) {
+    .then(function(data) {
       loader.hide();
-    }, function (err) {
+    }, function(err) {
       loader.hide();
       dialogs.alert({
         title: 'Error',
@@ -61,8 +63,13 @@ function itemTap(args) {
     });
 }
 
+function pageNavigatingTo(args) {
+  isBackNavigation = args.isBackNavigation;
+}
+
 module.exports = {
   pageLoaded,
+  pageNavigatingTo,
   searchBtnTap,
   itemTap
 };

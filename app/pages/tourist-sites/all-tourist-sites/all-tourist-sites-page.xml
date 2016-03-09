@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" navigatingTo="pageNavigatingTo" actionBarHidden="true">
   <StackLayout padding="10">
     <Label text="All tourist sites" class="title" textWrap="true" />
     <StackLayout orientation="horizontal" horizontalAlignment="center" visibility="{{ isLoading ? 'visible' : 'collapsed' }}">
