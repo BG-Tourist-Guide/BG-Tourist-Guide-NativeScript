@@ -4,13 +4,14 @@ let Observable = require('data/observable').Observable;
 let ObservableArray = require('data/observable-array').ObservableArray;
 let touristSitesService = require('../../../web/services/tourist-sites-service').defaultInstance;
 
-class AllTouristSitesViewModel extends Observable {
-  constructor() {
+class ListTouristSitesViewModel extends Observable {
+  constructor(type) {
     super();
-    this.title = 'All tourist sites';
+    this.title = 'Tourist sites';
     this.touristSites = new ObservableArray([]);
     this.page = 0;
     this.isLoading = false;
+    this.type = type;
   }
 
   loadTouristSites() {
@@ -19,7 +20,7 @@ class AllTouristSitesViewModel extends Observable {
     let that = this;
 
     let promise = new Promise(function (resolve, reject) {
-      touristSitesService.getForPage(that.page)
+      touristSitesService.getForPage(that.page, that.type)
         .then(function (data) {
           data.forEach(function (item) {
             that.touristSites.push(item);
@@ -39,6 +40,6 @@ class AllTouristSitesViewModel extends Observable {
 }
 
 module.exports = {
-  AllTouristSitesViewModel: AllTouristSitesViewModel,
-  defaultInstance: new AllTouristSitesViewModel()
+  ListTouristSitesViewModel: ListTouristSitesViewModel,
+  defaultInstance: new ListTouristSitesViewModel()
 };

@@ -15,6 +15,20 @@ class RateTouristSiteViewModel extends Observable {
     this.rating = 0;
     this.ratings = [5, 4, 3, 2, 1];
   }
+  
+  rateTouristSite() {
+    let ratingValue = this.ratings[this.rating];
+    let that = this;
+    
+    let promise = new Promise(function (resolve, reject) {
+        touristSitesService.rateTouristSite(that.touristSite._id, ratingValue)
+          .then(function(dbTouristSite) {
+            resolve(dbTouristSite);
+          }, reject);
+    });
+    
+    return promise;
+  }
 }
 
 module.exports = {

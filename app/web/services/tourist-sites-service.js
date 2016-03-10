@@ -4,12 +4,12 @@ let requester = require('../requester').defaultInstance;
 let responseHelper = require('../helpers/response-helper').defaultInstance;
 
 class TouristSitesService {
-  getForPage(page) {
+  getForPage(page, type) {
     page = page || 0;
 
-    let promise = new Promise(function (resolve, reject) {
-      requester.getJsonAsync(`/api/tourist-sites?page=${page}`)
-        .then(function (response) {
+    let promise = new Promise(function(resolve, reject) {
+      requester.getJsonAsync(`/api/tourist-sites?page=${page}&type=${type}`)
+        .then(function(response) {
           responseHelper.handleResponseInPromise(response, resolve, reject);
         });
     });
@@ -18,10 +18,26 @@ class TouristSitesService {
   }
 
   getTouristSitesNearPosition(position, radius) {
-    let promise = new Promise(function (resolve, reject) {
+    let promise = new Promise(function(resolve, reject) {
       requester
         .getJsonAsync(`/api/tourist-sites/near-me?latitude=${position.latitude}&longitude=${position.longitude}&radius=${radius}`)
-        .then(function (response) {
+        .then(function(response) {
+          responseHelper.handleResponseInPromise(response, resolve, reject);
+        }, reject);
+    });
+
+    return promise;
+  }
+
+  rateTouristSite(touristSiteId, ratingValue) {
+    let promise = new Promise(function(resolve, reject) {
+      let data = {
+        id: touristSiteId,
+        value: ratingValue
+      };
+            
+      requester.postJsonAsync('/api/tourist-sites/rate', data)
+        .then(function(response) {
           responseHelper.handleResponseInPromise(response, resolve, reject);
         }, reject);
     });

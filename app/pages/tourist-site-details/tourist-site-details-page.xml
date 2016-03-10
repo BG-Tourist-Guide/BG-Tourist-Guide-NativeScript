@@ -23,7 +23,7 @@
         </StackLayout>
         <StackLayout orientation="horizontal">
           <Image src="~/resources/images/Star_Full.png" stretch ="none" />
-          <Label text="{{ touristSite.calculatedRating + ' / 10' }}" textWrap="true" class="stats-label"/>
+          <Label text="{{ touristSite.calculatedRating + ' / 5' }}" textWrap="true" class="stats-label"/>
         </StackLayout>
         <Label text="{{ touristSite.description }}" textWrap="true" marginTop="20" />
       </StackLayout>

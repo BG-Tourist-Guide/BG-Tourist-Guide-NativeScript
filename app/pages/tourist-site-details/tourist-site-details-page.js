@@ -2,7 +2,7 @@
 
 let touristSiteDetailsViewModel = require('./tourist-site-details-view-model');
 let frame = require('ui/frame');
-let Stretch = require('ui/enums').Stretch;
+let dialogs = require('ui/dialogs');
 let viewModel;
 
 function pageLoaded(args) {
@@ -20,9 +20,25 @@ function navigatingTo(args) {
 function rateBtnTap(args) {
   let page = args.object.page;
 
-  page.showModal('./modals/rate-tourist-site/rate-tourist-site-modal', viewModel.touristSite, function(args) {
-    console.log('-------Close callback args');
-    console.dir(args);
+  page.showModal('./modals/rate-tourist-site/rate-tourist-site-modal', viewModel.touristSite, function(err, ratedTouristSite) {
+    if (err) {
+      dialogs.alert({
+        title: 'Error',
+        message: 'Cannot rate this tourist site.',
+        okButtonText: 'OK'
+      });
+      return;
+    }
+
+    dialogs.alert({
+      title: 'Success',
+      message: 'Tourist site rated successfully.',
+      okButtonText: 'OK'
+    })
+      .then(function() {
+        viewModel = new touristSiteDetailsViewModel.TouristSiteDetailsViewModel(ratedTouristSite);
+        page.bindingContext = viewModel;
+      });
   }, false);
 }
 

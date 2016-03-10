@@ -2,6 +2,6 @@
     <StackLayout padding="15 75">
       <Label text="Rate" class="title" textWrap="true" />
       <ListPicker items="{{ ratings }}" selectedIndex="{{ rating }}"></ListPicker>
-      <Button text="Rate" tap="rateBtnTap" class="btn-success" />
+      <Button text="Rate" tap="rateBtnTap" class="btn-success" tap="rateBtnTap" />
     </StackLayout>
 </Page>

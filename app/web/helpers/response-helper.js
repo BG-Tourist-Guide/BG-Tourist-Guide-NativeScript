@@ -9,7 +9,7 @@ class ResponseHeler {
 
       return;
     }
-
+    
     resolve(response.result);
   }
 }

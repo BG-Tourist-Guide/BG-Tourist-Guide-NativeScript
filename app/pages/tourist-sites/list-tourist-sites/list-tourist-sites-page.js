@@ -1,18 +1,19 @@
 'use strict';
 
-let allTouristSitesViewModel = require('./all-tourist-sites-view-model');
+let listTouristSitesViewModel = require('./list-tourist-sites-view-model');
 let customAnimations = require('../../../common/custom-animations');
 let loader = require('nativescript-loading-indicator');
 let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
 let isBackNavigation = false;
+let context;
 let viewModel;
 
 function pageLoaded(args) {
   let page = args.object;
 
   if (!isBackNavigation) {
-    viewModel = new allTouristSitesViewModel.AllTouristSitesViewModel();
+    viewModel = new listTouristSitesViewModel.ListTouristSitesViewModel(context.type);
 
     page.bindingContext = viewModel;
 
@@ -20,7 +21,7 @@ function pageLoaded(args) {
   }
 }
 
-function loadTouristSites(args) {
+function loadTouristSites() {
   viewModel.loadTouristSites()
     .then(function(data) {
     }, function(err) {
@@ -46,6 +47,7 @@ function itemTap(args) {
 
 function pageNavigatingTo(args) {
   isBackNavigation = args.isBackNavigation;
+  context = args.context;
 }
 
 module.exports = {

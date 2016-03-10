@@ -2,13 +2,14 @@
 
 let mainMenuViewModel = require('./main-menu-view-model');
 let customAnimations = require('../../common/custom-animations');
+let constants = require('../../common/constants');
 let frame = require('ui/frame');
 let viewModel;
 
 function pageLoaded(args) {
   let page = args.object;
   viewModel = new mainMenuViewModel.MainMenuViewModel();
-  
+
   if (!viewModel.currentUser) {
     frame.topmost()
       .navigate({
@@ -27,7 +28,38 @@ function allBtnTap(args) {
   button.animateTap();
 
   frame.topmost()
-    .navigate('./pages/tourist-sites/all-tourist-sites/all-tourist-sites-page');
+    .navigate({
+      moduleName: './pages/tourist-sites/list-tourist-sites/list-tourist-sites-page',
+      context: {
+        type: constants.ALL_TOURIST_SITES_TYPE
+      }
+    });
+}
+
+function officialBtnTap(args) {
+  let button = args.object;
+  button.animateTap();
+
+  frame.topmost()
+    .navigate({
+      moduleName: './pages/tourist-sites/list-tourist-sites/list-tourist-sites-page',
+      context: {
+        type: constants.OFFICIAL_TOURIST_SITES_TYPE
+      }
+    });
+}
+
+function unofficialBtnTap(args) {
+  let button = args.object;
+  button.animateTap();
+
+  frame.topmost()
+    .navigate({
+      moduleName: './pages/tourist-sites/list-tourist-sites/list-tourist-sites-page',
+      context: {
+        type: constants.UNOFFICIAL_TOURIST_SITES_TYPE
+      }
+    });
 }
 
 function nearMeBtnTap(args) {
@@ -53,7 +85,9 @@ function logoutBtnTap(args) {
 
 module.exports = {
   pageLoaded,
-  allBtnTap,
   nearMeBtnTap,
+  allBtnTap,
+  officialBtnTap,
+  unofficialBtnTap,
   logoutBtnTap
 };

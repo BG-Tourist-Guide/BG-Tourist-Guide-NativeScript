@@ -18,13 +18,14 @@ class TouristSiteDetailsViewModel extends Observable {
   }
 
   decideCanRate() {
+    let canRate = true;
     this.touristSite.ratings.forEach(function (item) {
       if (item.author === usersHelper.getCurrentUserFromLocalStorage().userName) {
-        return false;
+        canRate = false;
       }
     });
 
-    return true;
+    return canRate;
   }
 
   calculateRating() {
@@ -32,11 +33,14 @@ class TouristSiteDetailsViewModel extends Observable {
       this.touristSite.calculatedRating = 0;
     }
     else {
-      let ratingsSum = this.touristSite.ratings.reduce(function (first, second) {
-        return first.value + second.value;
+      let ratingsSum = this.touristSite.ratings.reduce(function (sum, item) {
+        return sum + (item.value || 0);
       }, 0);
-
-      this.touristSite.calculatedRating = ratingsSum / this.touristSite.ratings.length;
+      
+      console.log(ratingsSum);
+      console.log(this.touristSite.ratings.length);
+      
+      this.touristSite.calculatedRating = (ratingsSum / this.touristSite.ratings.length) | 0;
     }
   }
 }
