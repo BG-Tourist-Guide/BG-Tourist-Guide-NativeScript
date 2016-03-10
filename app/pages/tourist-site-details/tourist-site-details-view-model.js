@@ -37,9 +37,6 @@ class TouristSiteDetailsViewModel extends Observable {
         return sum + (item.value || 0);
       }, 0);
       
-      console.log(ratingsSum);
-      console.log(this.touristSite.ratings.length);
-      
       this.touristSite.calculatedRating = (ratingsSum / this.touristSite.ratings.length) | 0;
     }
   }

@@ -30,15 +30,17 @@ function rateBtnTap(args) {
       return;
     }
 
-    dialogs.alert({
-      title: 'Success',
-      message: 'Tourist site rated successfully.',
-      okButtonText: 'OK'
-    })
-      .then(function() {
-        viewModel = new touristSiteDetailsViewModel.TouristSiteDetailsViewModel(ratedTouristSite);
-        page.bindingContext = viewModel;
-      });
+    if (ratedTouristSite) {
+      dialogs.alert({
+        title: 'Success',
+        message: 'Tourist site rated successfully.',
+        okButtonText: 'OK'
+      })
+        .then(function() {
+          viewModel = new touristSiteDetailsViewModel.TouristSiteDetailsViewModel(ratedTouristSite);
+          page.bindingContext = viewModel;
+        });
+    }
   }, false);
 }
 
