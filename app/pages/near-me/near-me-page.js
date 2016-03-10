@@ -58,7 +58,7 @@ function itemTap(args) {
 
   frame.topmost()
     .navigate({
-      moduleName: './pages/tourist-site-details/tourist-site-details-page',
+      moduleName: './pages/tourist-sites/tourist-site-details/tourist-site-details-page',
       context: touristSite
     });
 }
