@@ -2,13 +2,18 @@
 let viewModule = require('ui/core/view');
 let animations = require('nativescript-effects');
 
-viewModule.View.prototype.animateTap = function (duration, opacity) {
-  duration = duration || 25;
+viewModule.View.prototype.animateTap = function(duration, opacity) {
+  duration = duration || 50;
   opacity = opacity || 0.8;
-  
+
   let that = this;
-  this.fadeTo(duration, opacity)
-        .then(function () {
-          that.fadeTo(duration, 1);
-        });
+  let promise = new Promise(function(resolve, reject) {
+    that.fadeTo(duration, opacity)
+      .then(function() {
+        return that.fadeTo(duration, 1);
+      })
+      .then(resolve, reject);
+  });
+
+  return promise;
 };
