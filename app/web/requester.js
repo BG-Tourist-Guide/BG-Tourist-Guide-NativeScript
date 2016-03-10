@@ -1,18 +1,18 @@
 'use strict';
-const BASE_URL = 'https://bg-tourist-guide-server.herokuapp.com';
+const BASE_URL = 'http://192.168.1.102:4000';
 let http = require('http');
 let users = require('../helpers/users-helper').defaultInstance;
 
 class Requester {
   getJsonAsync(url, ignoreBaseUrl) {
-    let promise = new Promise(function (resolve, reject) {
+    let promise = new Promise(function(resolve, reject) {
       let user = users.getCurrentUserFromLocalStorage();
       let headers = {
         'Content-Type': 'application/json'
       };
 
       if (user && user.token) {
-        headers.Authentication = 'Bearer ' + user.token;
+        headers.Authorization = 'Bearer ' + user.token;
       }
 
       let finalUrl = BASE_URL + url;
@@ -26,7 +26,7 @@ class Requester {
         method: 'GET',
         headers: headers
       })
-        .then(function (response) {
+        .then(function(response) {
           resolve(response.content.toJSON());
         }, reject);
     });
@@ -35,14 +35,14 @@ class Requester {
   }
 
   postJsonAsync(url, data) {
-    let promise = new Promise(function (resolve, reject) {
+    let promise = new Promise(function(resolve, reject) {
       let user = users.getCurrentUserFromLocalStorage();
       let headers = {
         'Content-Type': 'application/json'
       };
 
       if (user && user.token) {
-        headers.Authentication = 'Bearer ' + user.token;
+        headers.Authorization = 'Bearer ' + user.token;
       }
 
       http.request({
@@ -51,7 +51,7 @@ class Requester {
         headers: headers,
         content: JSON.stringify(data)
       })
-        .then(function (response) {
+        .then(function(response) {
           resolve(response.content.toJSON());
         }, reject);
     });
@@ -60,14 +60,14 @@ class Requester {
   }
 
   putJsonAsync(url, data) {
-    let promise = new Promise(function (resolve, reject) {
+    let promise = new Promise(function(resolve, reject) {
       let user = users.getCurrentUserFromLocalStorage();
       let headers = {
         'Content-Type': 'application/json'
       };
 
       if (user && user.token) {
-        headers.Authentication = 'Bearer ' + user.token;
+        headers.Authorization = 'Bearer ' + user.token;
       }
 
       http.request({
@@ -76,7 +76,7 @@ class Requester {
         headers: headers,
         content: JSON.stringify(data)
       })
-        .then(function (response) {
+        .then(function(response) {
           resolve(response.content.toJSON());
         }, reject);
     });
