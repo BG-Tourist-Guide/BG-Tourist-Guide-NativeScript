@@ -34,20 +34,21 @@ function pageLoaded(args, a) {
 
 function searchBtnTap(args) {
   let button = args.object;
-  button.animateTap();
+  button.animateTap()
+    .then(function() {
+      loader.show();
 
-  loader.show();
-
-  viewModel.findTouristSitesNearMe()
-    .then(function(data) {
-      loader.hide();
-    }, function(err) {
-      loader.hide();
-      dialogs.alert({
-        title: 'Error',
-        message: 'Cannot find your location or there is no connection to the server.',
-        okButtonText: 'OK'
-      });
+      viewModel.findTouristSitesNearMe()
+        .then(function(data) {
+          loader.hide();
+        }, function(err) {
+          loader.hide();
+          dialogs.alert({
+            title: 'Error',
+            message: 'Cannot find your location or there is no connection to the server.',
+            okButtonText: 'OK'
+          });
+        });
     });
 }
 

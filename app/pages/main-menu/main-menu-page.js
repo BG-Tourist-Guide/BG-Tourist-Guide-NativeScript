@@ -25,61 +25,66 @@ function pageLoaded(args) {
 
 function allBtnTap(args) {
   let button = args.object;
-  button.animateTap();
-
-  frame.topmost()
-    .navigate({
-      moduleName: './pages/tourist-sites/list-tourist-sites/list-tourist-sites-page',
-      context: {
-        type: constants.ALL_TOURIST_SITES_TYPE
-      }
+  button.animateTap()
+    .then(function() {
+      frame.topmost()
+        .navigate({
+          moduleName: './pages/tourist-sites/list-tourist-sites/list-tourist-sites-page',
+          context: {
+            type: constants.ALL_TOURIST_SITES_TYPE
+          }
+        });
     });
 }
 
 function officialBtnTap(args) {
   let button = args.object;
-  button.animateTap();
-
-  frame.topmost()
-    .navigate({
-      moduleName: './pages/tourist-sites/list-tourist-sites/list-tourist-sites-page',
-      context: {
-        type: constants.OFFICIAL_TOURIST_SITES_TYPE
-      }
+  button.animateTap()
+    .then(function() {
+      frame.topmost()
+        .navigate({
+          moduleName: './pages/tourist-sites/list-tourist-sites/list-tourist-sites-page',
+          context: {
+            type: constants.OFFICIAL_TOURIST_SITES_TYPE
+          }
+        });
     });
 }
 
 function unofficialBtnTap(args) {
   let button = args.object;
-  button.animateTap();
-
-  frame.topmost()
-    .navigate({
-      moduleName: './pages/tourist-sites/list-tourist-sites/list-tourist-sites-page',
-      context: {
-        type: constants.UNOFFICIAL_TOURIST_SITES_TYPE
-      }
+  button.animateTap()
+    .then(function() {
+      frame.topmost()
+        .navigate({
+          moduleName: './pages/tourist-sites/list-tourist-sites/list-tourist-sites-page',
+          context: {
+            type: constants.UNOFFICIAL_TOURIST_SITES_TYPE
+          }
+        });
     });
 }
 
 function nearMeBtnTap(args) {
   let button = args.object;
-  button.animateTap();
-
-  frame.topmost()
-    .navigate('./pages/near-me/near-me-page');
+  button.animateTap()
+    .then(function() {
+      frame.topmost()
+        .navigate('./pages/near-me/near-me-page');
+    });
 }
 
 function logoutBtnTap(args) {
   let button = args.object;
-  button.animateTap();
+  button.animateTap()
+    .then(function() {
+      viewModel.logout();
 
-  viewModel.logout();
-
-  frame.topmost()
-    .navigate({
-      backstackVisible: true,
-      moduleName: './pages/account/account-page'
+      frame.topmost()
+        .navigate({
+          backstackVisible: true,
+          moduleName: './pages/account/account-page'
+        });
     });
 }
 
