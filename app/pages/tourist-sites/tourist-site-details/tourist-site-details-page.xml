@@ -2,8 +2,8 @@
     <StackLayout padding="15">
       <StackLayout>
           <StackLayout orientation="horizontal" horizontalAlignment="center">
-            <Label text="{{ touristSite.title }}" textWrap="true" fontSize="18" width="80%" />
-            <Label text="{{ touristSite.isOfficial ? 'official' : 'unofficial' }}" class="blue-label" width="20%" />
+            <Label text="{{ touristSite.title }}" textWrap="true" fontSize="18" width="70%" />
+            <Label text="{{ touristSite.isOfficial ? 'official' : 'unofficial' }}" class="blue-label" width="30%" />
           </StackLayout>
       </StackLayout>
       <StackLayout orientation="horizontal" horizontalAlignment="center">
