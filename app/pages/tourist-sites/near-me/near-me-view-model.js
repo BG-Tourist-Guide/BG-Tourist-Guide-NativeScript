@@ -24,11 +24,7 @@ class NearMeViewModel extends Observable {
         return;
       }
 
-      geolocation.getCurrentLocation({
-        updateDistance: 10,
-        maximumAge: 3000,
-        timeout: 5 * 1000
-      }).
+      geolocation.getCurrentLocation().
         then(function (location) {
           return touristSitesService.getTouristSitesNearPosition(location, that.radius);
         }, reject)
