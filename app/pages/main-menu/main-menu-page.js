@@ -70,7 +70,7 @@ function nearMeBtnTap(args) {
   button.animateTap()
     .then(function() {
       frame.topmost()
-        .navigate('./pages/near-me/near-me-page');
+        .navigate('./pages/tourist-sites/near-me/near-me-page');
     });
 }
 

@@ -2,8 +2,8 @@
 
 let Observable = require('data/observable').Observable;
 let ObservableArray = require('data/observable-array').ObservableArray;
-let geolocation = require('../../helpers/geolocation-helper.js').defaultInstance;
-let touristSitesService = require('../../web/services/tourist-sites-service').defaultInstance;
+let geolocation = require('../../../helpers/geolocation-helper.js').defaultInstance;
+let touristSitesService = require('../../../web/services/tourist-sites-service').defaultInstance;
 
 class NearMeViewModel extends Observable {
   constructor() {

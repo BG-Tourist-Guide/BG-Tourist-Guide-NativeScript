@@ -1,7 +1,7 @@
 'use strict';
 
 let nearMeViewModel = require('./near-me-view-model');
-let customAnimations = require('../../common/custom-animations');
+let customAnimations = require('../../../common/custom-animations');
 let loader = require('nativescript-loading-indicator');
 let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
