@@ -4,6 +4,17 @@
     margin: 20;
 }
 
+page {
+  background-image: url("~/resources/images/Bulgarian-Gerb-With-Opacity.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+label {
+  color: black;
+}
+
 button {
     font-size: 26;
     border-radius: 15;
