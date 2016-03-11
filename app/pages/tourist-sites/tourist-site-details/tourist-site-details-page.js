@@ -44,8 +44,21 @@ function rateBtnTap(args) {
   }, false);
 }
 
+function showOnMapBtnTap(args) {
+  let button = args.object;
+  button.animateTap()
+    .then(function() {
+      frame.topmost()
+        .navigate({
+          moduleName: './pages/tourist-sites/show-on-map/shwo-on-map-page',
+          context: viewModel.touristSite
+        });
+    });
+}
+
 module.exports = {
   pageLoaded,
   navigatingTo,
-  rateBtnTap
+  rateBtnTap,
+  showOnMapBtnTap
 };

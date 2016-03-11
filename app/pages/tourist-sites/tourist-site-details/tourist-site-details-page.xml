@@ -8,7 +8,7 @@
       </StackLayout>
       <StackLayout orientation="horizontal" horizontalAlignment="center">
         <Button text="Rate" visibility="{{ canRate ? 'visible' : 'collapsed' }}" class="btn-primary btn-sm" tap="rateBtnTap" />
-        <Button text="Navigate" class="btn-primary btn-sm" tap="navigateBtnTap" />
+        <Button text="Show on map" class="btn-primary btn-sm" tap="showOnMapBtnTap" />
         <Button text="Comments" class="btn-primary btn-sm" tap="commentsBtnTap" />
       </StackLayout>
     <ScrollView>
