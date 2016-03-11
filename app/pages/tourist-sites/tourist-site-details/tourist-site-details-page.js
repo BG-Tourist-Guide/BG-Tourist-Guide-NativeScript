@@ -50,7 +50,7 @@ function showOnMapBtnTap(args) {
     .then(function() {
       frame.topmost()
         .navigate({
-          moduleName: './pages/tourist-sites/show-on-map/shwo-on-map-page',
+          moduleName: './pages/tourist-sites/show-on-map/show-on-map-page',
           context: viewModel.touristSite
         });
     });
