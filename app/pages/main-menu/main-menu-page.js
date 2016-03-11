@@ -74,6 +74,15 @@ function nearMeBtnTap(args) {
     });
 }
 
+function addNewBtnTap(args) {
+  let button = args.object;
+  button.animateTap()
+    .then(function() {
+      frame.topmost()
+        .navigate('./pages/tourist-sites/add-tourist-site/add-tourist-site-page');
+    });
+}
+
 function logoutBtnTap(args) {
   let button = args.object;
   button.animateTap()
@@ -94,5 +103,6 @@ module.exports = {
   allBtnTap,
   officialBtnTap,
   unofficialBtnTap,
+  addNewBtnTap,
   logoutBtnTap
 };

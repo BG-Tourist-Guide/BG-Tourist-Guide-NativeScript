@@ -7,6 +7,7 @@
           <Button class="btn-success" text="All tourist sites" tap="allBtnTap" />
           <Button class="btn-success" text="Official tourist sites" tap="officialBtnTap" />
           <Button class="btn-success" text="Unofficial tourist sites" tap="unofficialBtnTap" />
+          <Button class="btn-success" text="Add new tourist site" tap="addNewBtnTap" />
           <Button class="btn-success" text="Logout" tap="logoutBtnTap" />
         </StackLayout>
     </ScrollView>

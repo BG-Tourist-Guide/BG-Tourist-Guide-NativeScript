@@ -86,3 +86,8 @@ button {
   font-size: 20;
   vertical-align: center;
 }
+
+.add-tourist-site-label {
+  horizontal-align: center;
+  font-size: 18;
+}
