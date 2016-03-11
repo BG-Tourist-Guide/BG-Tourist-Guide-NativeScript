@@ -44,6 +44,17 @@ class TouristSitesService {
 
     return promise;
   }
+  
+  addTouristSite(touristSite) {
+    let promise = new Promise(function(resolve, reject) {            
+      requester.postJsonAsync('/api/tourist-sites', touristSite)
+        .then(function(response) {
+          responseHelper.handleResponseInPromise(response, resolve, reject);
+        }, reject);
+    });
+
+    return promise;
+  }
 }
 
 module.exports = {

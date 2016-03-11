@@ -14,6 +14,39 @@ class AddTouristSiteViewModel extends Observable {
     this.longitude = null;
     this.useMyCurrentLocation = false;
   }
+
+  addTouristSite() {
+    let touristSite = {
+      title: this.title,
+      description: this.description,
+      address: this.address,
+      isOfficial: false,
+      isApprovedForVisiting: false
+    };
+
+    let that = this;
+
+    let promise = new Promise(function(resolve, reject) {
+      if (that.useMyCurrentLocation) {
+        geolocation.getCurrentLocation()
+          .then(function(location) {
+            touristSite.latitude = location.latitude;
+            touristSite.longitude = location.longitude;
+
+            return touristSitesService.addTouristSite(touristSite);
+          }, reject)
+          .then(resolve, reject);
+      } else {
+        touristSite.latitude = that.latitude;
+        touristSite.longitude = that.longitude;
+
+        touristSitesService.addTouristSite(touristSite)
+          .then(resolve, reject);
+      }
+    });
+
+    return promise;
+  }
 }
 
 module.exports = {
