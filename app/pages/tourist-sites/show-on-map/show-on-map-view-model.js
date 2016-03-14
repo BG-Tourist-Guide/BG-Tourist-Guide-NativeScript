@@ -6,7 +6,7 @@ let mapsModule = require('nativescript-google-maps-sdk');
 class ShowOnMapViewModel extends Observable {
   constructor(touristSite) {
     super();
-
+    console.log('-------VM Ctor');
     this.touristSite = touristSite;
   }
 

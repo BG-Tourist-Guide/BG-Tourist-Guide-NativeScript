@@ -1,5 +1,6 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:maps="nativescript-google-maps-sdk" loaded="pageLoaded" navigatingTo="pageNavigatingTo" actionBarHidden="true">
   <StackLayout padding="10">
-      <maps:mapView mapReady="onMapReady" />
+      <maps:mapView latitude="43.777" longitude="27.555" 
+    								 mapReady="onMapReady" />
   </StackLayout>
 </Page>
