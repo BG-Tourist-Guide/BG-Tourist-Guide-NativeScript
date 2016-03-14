@@ -2,22 +2,21 @@
 
 let Observable = require('data/observable').Observable;
 let mapsModule = require('nativescript-google-maps-sdk');
+let application = require('application');
 
 class ShowOnMapViewModel extends Observable {
   constructor(touristSite) {
     super();
-    console.log('-------VM Ctor');
     this.touristSite = touristSite;
+    this.latitude = touristSite ? touristSite.latitude : 0;
+    this.longitude = touristSite ? touristSite.longitude : 0;
   }
 
   onMapReady(args) {
     let mapView = args.object;
-
-    console.log("-------Setting a marker...");
+    
     let marker = new mapsModule.Marker();
-    marker.position = mapsModule.Position.positionFromLatLng(-33.86, 151.20);
-    marker.title = "Sydney";
-    marker.snippet = "Australia";
+    marker.position = mapsModule.Position.positionFromLatLng(this.latitude, this.longitude);
     marker.userData = { index: 1 };
     mapView.addMarker(marker);
   }

@@ -6,11 +6,10 @@ let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
 let isBackNavigation = false;
 let viewModel = showOnMapViewModel.defaultInstance;
-console.log('-------Page');
+
 function pageLoaded(args, a) {
   let page = args.object;
   let touristSite = args.context;
-  console.log('-------Page loaded');
   
   viewModel = new showOnMapViewModel.ShowOnMapViewModel(touristSite);
 }

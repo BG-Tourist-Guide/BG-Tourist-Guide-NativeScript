@@ -1,5 +1,13 @@
 // Add your native dependencies here:
 
+// Enable multidex?
+// android {
+//     defaultConfig {
+//         // Enabling multidex support.
+//         multiDexEnabled true
+//     }
+// }
+
 buildscript {
     repositories {
         jcenter()
@@ -13,5 +21,7 @@ buildscript {
 
 dependencies {
 	compile "com.android.support:recyclerview-v7:+"
+  // Enable multidex?
+  // compile "com.android.support:multidex:1.0.0"
 	compile "com.google.android.gms:play-services-maps:8.3.0"
 }
