@@ -1,7 +1,0 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true">
-  <StackLayout>
-    <Label class="title" text="{{ title }}" class="title" />
-    <Button class="btn-success" text="Login" tap="loginBtnTap" />
-    <Button class="btn-primary" text="Register" tap="registerBtnTap" />
-  </StackLayout>
-</Page>
