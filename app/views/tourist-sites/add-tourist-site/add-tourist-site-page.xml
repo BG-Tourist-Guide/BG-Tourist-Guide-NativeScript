@@ -1,0 +1,21 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true">
+    <StackLayout padding="20 20 0 20">
+      <ScrollView>
+          <StackLayout>
+              <Label text="Add tourist site" class="title" textWrap="true" />
+              <TextField hint="Title" text="{{ title }}" margin="10 0" />
+              <TextView hint="Description" text="{{ description }}" editable="true" margin="20 0 0 0" />
+              <TextField hint="Address" text="{{ address }}" margin="20 0" />
+              <StackLayout orientation="horizontal">
+                  <Label text="Use my current location" class="add-tourist-site-label" textWrap="true" width="60%" />
+                  <Switch checked="{{ useMyCurrentLocation }}" width="40%" />
+              </StackLayout>
+              <StackLayout orientation="horizontal" horizontalAlignment="center" margin="20 0" visibility="{{ !useMyCurrentLocation ? 'visible' : 'collapsed' }}">
+                  <TextField hint="Latitude" keyboardType="number" text="{{ latitude }}" />
+                  <TextField hint="Longitude" keyboardType="number" text="{{ longitude }}" />
+              </StackLayout>
+              <Button text="Add" class="btn-primary" tap="addBtnTap" margin="30 0 0 0" />
+          </StackLayout>
+      </ScrollView>
+  </StackLayout>
+</Page>

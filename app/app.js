@@ -7,4 +7,4 @@ if(application.ios) {
   GMSServices.provideAPIKey('AIzaSyCPfj-u-cjBpBjtMTg6zFg_dyP_Ca7kNrE');
 }
 
-application.start({ moduleName: './pages/main-menu/main-menu-page' });
+application.start({ moduleName: './views/main-menu/main-menu-page' });
