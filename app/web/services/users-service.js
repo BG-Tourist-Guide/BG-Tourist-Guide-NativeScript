@@ -6,15 +6,15 @@ let usersHelper = require('../../helpers/users-helper').defaultInstance;
 
 class UsersService {
   login(userName, password) {
-    let promise = new Promise(function (resolve, reject) {
+    let promise = new Promise(function(resolve, reject) {
       let data = {
         userName,
         password: sha1(password)
       };
 
       requester.putJsonAsync('/api/users/token', data)
-        .then(function (response) {
-          if(response.result) {
+        .then(function(response) {
+          if (response.result) {
             usersHelper.setCurrentUserInLocalStorage(response.result);
             resolve(response.result);
           }
@@ -26,17 +26,34 @@ class UsersService {
 
     return promise;
   }
-  
+
   register(userName, password) {
-    let promise = new Promise(function (resolve, reject) {
+    let promise = new Promise(function(resolve, reject) {
       let data = {
         userName,
         password: sha1(password)
       };
 
       requester.postJsonAsync('/api/users', data)
-        .then(function (response) {
-          if(response.result) {
+        .then(function(response) {
+          if (response.result) {
+            usersHelper.setCurrentUserInLocalStorage(response.result);
+            resolve(response.result);
+          }
+          else {
+            reject(response);
+          }
+        }, reject);
+    });
+
+    return promise;
+  }
+
+  updateProfileInformation() {
+    let promise = new Promise(function(resolve, reject) {
+      requester.getJsonAsync('/api/users/profile')
+        .then(function(response) {
+          if (response.result) {
             usersHelper.setCurrentUserInLocalStorage(response.result);
             resolve(response.result);
           }
