@@ -35,7 +35,7 @@ class TouristSitesService {
         id: touristSiteId,
         value: ratingValue
       };
-            
+
       requester.postJsonAsync('/api/tourist-sites/rate', data)
         .then(function(response) {
           responseHelper.handleResponseInPromise(response, resolve, reject);
@@ -44,10 +44,23 @@ class TouristSitesService {
 
     return promise;
   }
-  
+
   addTouristSite(touristSite) {
-    let promise = new Promise(function(resolve, reject) {            
+    let promise = new Promise(function(resolve, reject) {
       requester.postJsonAsync('/api/tourist-sites', touristSite)
+        .then(function(response) {
+          responseHelper.handleResponseInPromise(response, resolve, reject);
+        }, reject);
+    });
+
+    return promise;
+  }
+
+  visitTouristSite(touristSite) {
+    let promise = new Promise(function(resolve, reject) {
+      requester.putJsonAsync('/api/tourist-sites/visit', {
+        touristSiteId: touristSite._id
+      })
         .then(function(response) {
           responseHelper.handleResponseInPromise(response, resolve, reject);
         }, reject);

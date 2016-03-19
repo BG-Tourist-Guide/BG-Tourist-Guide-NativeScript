@@ -3,7 +3,8 @@
 let touristSiteDetailsViewModel = require('./tourist-site-details-view-model');
 let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
-let viewModel;
+let loader = require('nativescript-loading-indicator');
+let viewModel = touristSiteDetailsViewModel.defaultInstance;
 
 function pageLoaded(args) {
   let page = args.object;
@@ -50,9 +51,37 @@ function showOnMapBtnTap(args) {
     .then(function() {
       frame.topmost()
         .navigate({
-          moduleName: './pages/tourist-sites/show-on-map/show-on-map-page',
+          moduleName: './views/tourist-sites/show-on-map/show-on-map-page',
           context: viewModel.touristSite
         });
+    });
+}
+
+function visitBtnTap(args) {
+  let button = args.object;
+  let page = button.page;
+
+  button.animateTap()
+    .then(function() {
+      loader.show();
+      return viewModel.visitTouristSite();
+    })
+    .then(function(responsetouristSite) {
+      loader.hide();
+      viewModel = new touristSiteDetailsViewModel.TouristSiteDetailsViewModel(responsetouristSite);
+      page.bindingContext = viewModel;
+      dialogs.alert({
+        title: 'Success',
+        message: 'Tourist site visited successfully.',
+        okButtonText: 'OK'
+      });
+    }, function(err) {
+      loader.hide();
+      dialogs.alert({
+        title: 'Error',
+        message: 'You cannot visit this tourist site right now. Please try again later.',
+        okButtonText: 'OK'
+      });
     });
 }
 
@@ -60,5 +89,6 @@ module.exports = {
   pageLoaded,
   navigatingTo,
   rateBtnTap,
-  showOnMapBtnTap
+  showOnMapBtnTap,
+  visitBtnTap
 };

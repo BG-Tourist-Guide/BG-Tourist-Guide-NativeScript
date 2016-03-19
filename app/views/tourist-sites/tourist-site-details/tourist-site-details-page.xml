@@ -1,16 +1,17 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" navigatingTo="navigatingTo" actionBarHidden="true">
-    <StackLayout padding="15">
-      <StackLayout>
-          <StackLayout orientation="horizontal" horizontalAlignment="center">
-            <Label text="{{ touristSite.title }}" textWrap="true" fontSize="18" width="70%" />
-            <Label text="{{ touristSite.isOfficial ? 'official' : 'unofficial' }}" class="blue-label" width="30%" />
-          </StackLayout>
-      </StackLayout>
-      <StackLayout orientation="horizontal" horizontalAlignment="center">
-        <Button text="Rate" visibility="{{ canRate ? 'visible' : 'collapsed' }}" class="btn-primary btn-sm" tap="rateBtnTap" />
-        <Button text="Show on map" class="btn-primary btn-sm" tap="showOnMapBtnTap" />
-        <Button text="Comments" class="btn-primary btn-sm" tap="commentsBtnTap" />
-      </StackLayout>
+  <StackLayout padding="15">
+    <StackLayout>
+        <StackLayout orientation="horizontal" horizontalAlignment="center">
+          <Label text="{{ touristSite.title }}" textWrap="true" fontSize="18" width="70%" />
+          <Label text="{{ touristSite.isOfficial ? 'official' : 'unofficial' }}" class="blue-label" width="30%" />
+        </StackLayout>
+    </StackLayout>
+    <StackLayout orientation="horizontal" horizontalAlignment="center">
+      <Button text="Rate" visibility="{{ canRate ? 'visible' : 'collapsed' }}" class="btn-primary btn-sm" tap="rateBtnTap" />
+      <Button text="Show on map" class="btn-primary btn-sm" tap="showOnMapBtnTap" />
+      <Button text="Comments" class="btn-primary btn-sm" tap="commentsBtnTap" />
+    </StackLayout>
+    <Button text="Visit" class="btn-success" width="50%" horizontalAlignment="center" tap="visitBtnTap" />
     <ScrollView>
       <StackLayout marginTop="10">
         <StackLayout orientation="horizontal">
