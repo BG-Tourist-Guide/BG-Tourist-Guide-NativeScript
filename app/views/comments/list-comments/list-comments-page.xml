@@ -1,0 +1,23 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" navigatingTo="pageNavigatingTo" actionBarHidden="true">
+  <StackLayout padding="15">
+    <Label fontSize="24" horizontalAlignment="center" width="100%" textWrap="true" text="{{ title }}" />
+    <Button text="Add comment" class="btn-success" width="70%" tap="addCommentBtnTap" />
+    <StackLayout orientation="horizontal" horizontalAlignment="center" visibility="{{ isLoading ? 'visible' : 'collapsed' }}">
+      <ActivityIndicator width="50" height="50" busy="true" />
+      <Label text="Loading comments" marginTop="15" textWrap="true" />
+    </StackLayout>
+    <ListView items="{{ comments }}" loadMoreItems="loadComments" margin="20 5 5 5">
+      <ListView.itemTemplate>
+        <StackLayout class="comment-container">
+          <GridLayout rows="*" columns="*, *">
+            <Label text="{{ author }}" row="0" col="0" />
+            <Label text="{{ formatedDate }}" textWrap="true" fontSize="14" color="#5A5A5A" row="0" col="1" />
+          </GridLayout>
+          <StackLayout class="horizontal-line" margin="10 0">
+          </StackLayout>
+          <Label text="{{ content }}" textWrap="true" color="#555555" />
+        </StackLayout>
+      </ListView.itemTemplate>
+    </ListView>
+  </StackLayout>
+</Page>

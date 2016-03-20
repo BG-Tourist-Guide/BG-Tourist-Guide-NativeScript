@@ -85,10 +85,23 @@ function visitBtnTap(args) {
     });
 }
 
+function commentsBtnTap(args) {
+  let button = args.object;
+  button.animateTap()
+    .then(function() {
+      frame.topmost()
+        .navigate({
+          moduleName: './views/comments/list-comments/list-comments-page',
+          context: viewModel.touristSite
+        });
+    });
+}
+
 module.exports = {
   pageLoaded,
   navigatingTo,
   rateBtnTap,
   showOnMapBtnTap,
-  visitBtnTap
+  visitBtnTap,
+  commentsBtnTap
 };
