@@ -1,17 +1,17 @@
 {
-  "nativescript": {
-    "id": "lab.tsvetanmilanov.bgtouristguide",
-    "tns-android": {
-      "version": "1.6.3"
-    }
-  },
-  "dependencies": {
-    "moment": "^2.12.0",
-    "nativescript-effects": "^0.3.0",
-    "nativescript-geolocation": "0.0.8",
-    "nativescript-google-maps-sdk": "^1.2.2",
-    "nativescript-loading-indicator": "^1.0.1",
-    "sha1": "^1.1.1",
-    "tns-core-modules": "1.6.2"
-  }
+	"nativescript": {
+		"id": "lab.tsvetanmilanov.bgtouristguide",
+		"tns-android": {
+			"version": "1.7.1"
+		}
+	},
+	"dependencies": {
+		"moment": "^2.12.0",
+		"nativescript-effects": "^0.3.0",
+		"nativescript-geolocation": "0.0.8",
+		"nativescript-google-maps-sdk": "^1.2.2",
+		"nativescript-loading-indicator": "^1.0.1",
+		"sha1": "^1.1.1",
+		"tns-core-modules": "^1.7.1"
+	}
 }
