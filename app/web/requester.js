@@ -1,6 +1,6 @@
 'use strict';
-// const BASE_URL = 'https://bg-tourist-guide-server.herokuapp.com';
-const BASE_URL = 'http://192.168.1.102:4000';
+const BASE_URL = 'https://bg-tourist-guide-server.herokuapp.com';
+// const BASE_URL = 'http://192.168.1.102:4000';
 let http = require('http');
 let users = require('../helpers/users-helper').defaultInstance;
 

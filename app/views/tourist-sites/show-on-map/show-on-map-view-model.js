@@ -16,7 +16,9 @@ class ShowOnMapViewModel extends Observable {
     let mapView = args.object;
     
     let marker = new mapsModule.Marker();
-    marker.position = mapsModule.Position.positionFromLatLng(this.latitude, this.longitude);
+    marker.position = mapsModule.Position.positionFromLatLng(this.touristSite.latitude, this.touristSite.longitude);
+    marker.title = "title";
+    marker.snippet = "snippet";
     marker.userData = { index: 1 };
     mapView.addMarker(marker);
   }
