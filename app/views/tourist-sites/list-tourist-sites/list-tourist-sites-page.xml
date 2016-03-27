@@ -1,6 +1,17 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" navigatingTo="pageNavigatingTo" actionBarHidden="true">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" navigatingTo="pageNavigatingTo">
+  <Page.actionBar>
+      <ActionBar>
+        <ActionBar.titleView>
+          <StackLayout orientation="horizontal"
+            ios:horizontalAlignment="center"
+            android:horizontalAlignment="left">
+            <Label text="{{ title }}"  class="action-bar-title"/>
+          </StackLayout>
+        </ActionBar.titleView>
+          <NavigationButton android.systemIcon="ic_menu_back" tap="backBtnTap"/>
+      </ActionBar>
+  </Page.actionBar>
   <StackLayout padding="10">
-    <Label text="Tourist sites" class="title" textWrap="true" />
     <StackLayout orientation="horizontal" horizontalAlignment="center" visibility="{{ isLoading ? 'visible' : 'collapsed' }}">
         <ActivityIndicator width="50" height="50" busy="true" />
         <Label text="Loading tourist sites" marginTop="15" textWrap="true" />
