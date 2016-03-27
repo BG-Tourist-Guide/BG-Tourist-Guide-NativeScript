@@ -5,7 +5,7 @@
           <StackLayout orientation="horizontal"
             ios:horizontalAlignment="center"
             android:horizontalAlignment="left">
-            <Label text="{{ pageTitle }}"  class="action-bar-title"/>
+            <Label text="{{ pageTitle }}" class="action-bar-title" />
           </StackLayout>
         </ActionBar.titleView>
           <NavigationButton android.systemIcon="ic_menu_back" tap="backBtnTap"/>
