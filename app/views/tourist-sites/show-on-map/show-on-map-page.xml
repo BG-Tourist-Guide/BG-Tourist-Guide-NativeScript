@@ -1,4 +1,16 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:maps="nativescript-google-maps-sdk" loaded="pageLoaded" navigatingTo="pageNavigatingTo" actionBarHidden="true">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:maps="nativescript-google-maps-sdk" loaded="pageLoaded" navigatingTo="pageNavigatingTo">
+  <Page.actionBar>
+      <ActionBar>
+        <ActionBar.titleView>
+          <StackLayout orientation="horizontal"
+            ios:horizontalAlignment="center"
+            android:horizontalAlignment="left">
+            <Label text="{{ title }}"  class="action-bar-title"/>
+          </StackLayout>
+        </ActionBar.titleView>
+          <NavigationButton android.systemIcon="ic_menu_back" tap="backBtnTap"/>
+      </ActionBar>
+  </Page.actionBar>
   <StackLayout padding="10">
       <maps:mapView latitude="{{ latitude }}" 
         longitude="{{ longitude }}" 

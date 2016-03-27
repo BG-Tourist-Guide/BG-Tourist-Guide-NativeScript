@@ -8,6 +8,7 @@ class ShowOnMapViewModel extends Observable {
   constructor(touristSite) {
     super();
     this.touristSite = touristSite;
+    this.title = touristSite ? touristSite.title : '';
     this.latitude = touristSite ? touristSite.latitude : 0;
     this.longitude = touristSite ? touristSite.longitude : 0;
   }
