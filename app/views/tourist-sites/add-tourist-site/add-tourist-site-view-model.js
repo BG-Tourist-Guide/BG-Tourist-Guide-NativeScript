@@ -7,7 +7,7 @@ let touristSitesService = require('../../../web/services/tourist-sites-service')
 class AddTouristSiteViewModel extends Observable {
   constructor() {
     super();
-    this.title = '';
+    this.pageTitle = 'Add tourist site';
     this.description = '';
     this.address = '';
     this.latitude = null;
