@@ -32,7 +32,13 @@ function rateBtnTap(args) {
     });
 }
 
+function cancelBtnTap(args) {
+  let page = args.object.page;
+  page.closeModal(null, null);
+}
+
 module.exports = {
   pageShownModally,
-  rateBtnTap
+  rateBtnTap,
+  cancelBtnTap
 };

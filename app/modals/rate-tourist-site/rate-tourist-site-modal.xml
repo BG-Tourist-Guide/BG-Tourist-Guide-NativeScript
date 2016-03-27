@@ -1,7 +1,10 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" shownModally="pageShownModally" borderRadius="10">
-    <StackLayout padding="15 75">
+    <StackLayout padding="15 15" width="80%">
       <Label text="Rate" class="title" textWrap="true" />
       <ListPicker items="{{ ratings }}" selectedIndex="{{ rating }}"></ListPicker>
-      <Button text="Rate" tap="rateBtnTap" class="btn-success" tap="rateBtnTap" />
+      <StackLayout orientation="horizontal" horizontalAlignment="center">
+        <Button text="Rate" class="btn-success" tap="rateBtnTap" />
+        <Button text="Cancel" tap="cancelBtnTap" class="btn-default" />
+      </StackLayout>
     </StackLayout>
 </Page>
