@@ -1,6 +1,17 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" navigatingTo="pageNavigatingTo" actionBarHidden="true">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" navigatingTo="pageNavigatingTo">
+  <Page.actionBar>
+      <ActionBar>
+        <ActionBar.titleView>
+          <StackLayout orientation="horizontal"
+            ios:horizontalAlignment="center"
+            android:horizontalAlignment="left">
+            <Label text="{{ title }}" fontSize="22" textWrap="true" />
+          </StackLayout>
+        </ActionBar.titleView>
+          <NavigationButton android.systemIcon="ic_menu_back" title="Back" tap="backBtnTap"/>
+      </ActionBar>
+  </Page.actionBar>
   <StackLayout padding="15">
-    <Label fontSize="24" horizontalAlignment="center" width="100%" textWrap="true" text="{{ title }}" />
     <Button text="Add comment" class="btn-success" width="70%" tap="addCommentBtnTap" />
     <StackLayout orientation="horizontal" horizontalAlignment="center" visibility="{{ isLoading ? 'visible' : 'collapsed' }}">
       <ActivityIndicator width="50" height="50" busy="true" />
