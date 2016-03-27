@@ -1,8 +1,7 @@
 'use strict';
 
 let nearMeViewModel = require('./near-me-view-model');
-let customAnimations = require('../../../common/custom-animations');
-let loader = require('nativescript-loading-indicator');
+let basePage = require('../../common/base-page').defaultInstance;
 let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
 let isBackNavigation = false;
@@ -16,13 +15,13 @@ function pageLoaded(args, a) {
 
     page.bindingContext = viewModel;
 
-    loader.show();
+    basePage.loader.show();
 
     viewModel.findTouristSitesNearMe()
       .then(function(data) {
-        loader.hide();
+        basePage.loader.hide();
       }, function(err) {
-        loader.hide();
+        basePage.loader.hide();
         dialogs.alert({
           title: 'Error',
           message: 'Cannot find your location or there is no connection to the server.',
@@ -36,13 +35,13 @@ function searchBtnTap(args) {
   let button = args.object;
   button.animateTap()
     .then(function() {
-      loader.show();
+      basePage.loader.show();
 
       viewModel.findTouristSitesNearMe()
         .then(function(data) {
-          loader.hide();
+          basePage.loader.hide();
         }, function(err) {
-          loader.hide();
+          basePage.loader.hide();
           dialogs.alert({
             title: 'Error',
             message: 'Cannot find your location or there is no connection to the server.',
@@ -72,5 +71,6 @@ module.exports = {
   pageLoaded,
   pageNavigatingTo,
   searchBtnTap,
-  itemTap
+  itemTap,
+  backBtnTap: basePage.backBtnTap
 };
