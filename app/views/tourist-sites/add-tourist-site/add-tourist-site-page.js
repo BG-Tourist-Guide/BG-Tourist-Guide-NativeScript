@@ -1,11 +1,10 @@
 'use strict';
 
 let addTouristSiteViewModel = require('./add-tourist-site-view-model');
+let basePage = require('../../common/base-page').defaultInstance;
 let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
-let customAnimations = require('../../../common/custom-animations');
 let viewModel = new addTouristSiteViewModel.AddTouristSiteViewModel();
-let loader = require('nativescript-loading-indicator');
 
 function pageLoaded(args) {
   let page = args.object;
@@ -30,11 +29,11 @@ function addBtnTap(args) {
         return;
       }
       
-      loader.show();
+      basePage.loader.show();
       
       viewModel.addTouristSite()
         .then(function(createdTouristSite) {
-          loader.hide();
+          basePage.loader.hide();
           dialogs.alert({
             title: 'Success',
             message: `Tourist site ${viewModel.title} added successfully. When it is approved it will be added for visiting.`,
@@ -45,10 +44,7 @@ function addBtnTap(args) {
               .navigate('./views/main-menu/main-menu-page');
           });
         }, function (err) {
-          loader.hide();
-          console.log('-------Error');
-          console.log(err);
-          console.dir(err);
+          basePage.loader.hide();
           dialogs.alert({
             title: 'Error',
             message: `Tourist site ${viewModel.title} was not added. Please try again when you have internet connection and try again later.`,
@@ -60,5 +56,6 @@ function addBtnTap(args) {
 
 module.exports = {
   pageLoaded,
-  addBtnTap
+  addBtnTap,
+  backBtnTap: basePage.backBtnTap
 };

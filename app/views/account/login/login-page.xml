@@ -1,6 +1,17 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true">
-  <StackLayout>
-    <Label class="title" text="{{ title }}" class="title" />
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <Page.actionBar>
+      <ActionBar>
+        <ActionBar.titleView>
+          <StackLayout orientation="horizontal"
+            ios:horizontalAlignment="center"
+            android:horizontalAlignment="left">
+            <Label text="{{ title }}" class="action-bar-title" />
+          </StackLayout>
+        </ActionBar.titleView>
+          <NavigationButton android.systemIcon="ic_menu_back" tap="backBtnTap"/>
+      </ActionBar>
+  </Page.actionBar>
+  <StackLayout padding="20">
     <TextField hint="Username" text="{{ userName }}" />
     <TextField hint="Password" text="{{ password }}" secure="true" />
     <Button class="btn-success" text="Login" tap="loginBtnTap" />

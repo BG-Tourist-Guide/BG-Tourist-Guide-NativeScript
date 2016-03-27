@@ -3,7 +3,7 @@
 let touristSiteDetailsViewModel = require('./tourist-site-details-view-model');
 let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
-let loader = require('nativescript-loading-indicator');
+let basePage = require('../../common/base-page').defaultInstance;
 let viewModel = touristSiteDetailsViewModel.defaultInstance;
 
 function pageLoaded(args) {
@@ -63,11 +63,11 @@ function visitBtnTap(args) {
 
   button.animateTap()
     .then(function() {
-      loader.show();
+      basePage.loader.show();
       return viewModel.visitTouristSite();
     })
     .then(function(responsetouristSite) {
-      loader.hide();
+      basePage.loader.hide();
       viewModel = new touristSiteDetailsViewModel.TouristSiteDetailsViewModel(responsetouristSite);
       page.bindingContext = viewModel;
       dialogs.alert({
@@ -76,7 +76,7 @@ function visitBtnTap(args) {
         okButtonText: 'OK'
       });
     }, function(err) {
-      loader.hide();
+      basePage.loader.hide();
       dialogs.alert({
         title: 'Error',
         message: 'You cannot visit this tourist site right now. Please try again later.',
@@ -103,5 +103,6 @@ module.exports = {
   rateBtnTap,
   showOnMapBtnTap,
   visitBtnTap,
-  commentsBtnTap
+  commentsBtnTap,
+  backBtnTap: basePage.backBtnTap
 };

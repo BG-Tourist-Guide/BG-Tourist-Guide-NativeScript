@@ -1,5 +1,6 @@
 'use strict';
 let listCommentsViewModel = require('./list-comments-view-model');
+let basePage = require('../../common/base-page').defaultInstance;
 let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
 let viewModel = listCommentsViewModel.defaultInstance;
@@ -64,5 +65,6 @@ module.exports = {
   pageLoaded,
   pageNavigatingTo,
   loadComments,
-  addCommentBtnTap
+  addCommentBtnTap,
+  backBtnTap: basePage.backBtnTap
 };

@@ -4,6 +4,10 @@
   margin: 20;
 }
 
+.action-bar-title {
+  font-size: 26;
+}
+
 page {
   background-image: url("~/resources/images/Bulgarian-Gerb-With-Opacity.png");
   background-repeat: no-repeat;

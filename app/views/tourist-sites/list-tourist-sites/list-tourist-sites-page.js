@@ -1,13 +1,12 @@
 'use strict';
 
 let listTouristSitesViewModel = require('./list-tourist-sites-view-model');
-let customAnimations = require('../../../common/custom-animations');
-let loader = require('nativescript-loading-indicator');
+let basePage = require('../../common/base-page').defaultInstance;
 let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
 let isBackNavigation = false;
 let context;
-let viewModel;
+let viewModel = listTouristSitesViewModel.defaultInstance;
 
 function pageLoaded(args) {
   let page = args.object;
@@ -54,5 +53,6 @@ module.exports = {
   pageLoaded,
   pageNavigatingTo,
   loadTouristSites,
-  itemTap
+  itemTap,
+  backBtnTap: basePage.backBtnTap
 };

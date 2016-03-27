@@ -1,7 +1,6 @@
 'use strict';
 let showOnMapViewModel = require('./show-on-map-view-model');
-let customAnimations = require('../../../common/custom-animations');
-let loader = require('nativescript-loading-indicator');
+let basePage = require('../../common/base-page').defaultInstance;
 let frame = require('ui/frame');
 let dialogs = require('ui/dialogs');
 let isBackNavigation = false;
@@ -34,5 +33,6 @@ module.exports = {
   pageNavigatingTo,
   onMapReady,
   onCameraChanged,
-  onMarkerSelect
+  onMarkerSelect,
+  backBtnTap: basePage.backBtnTap
 };

@@ -13,6 +13,7 @@ class TouristSiteDetailsViewModel extends Observable {
 
     if (touristSite) {
       this.touristSite = touristSite;
+      this.title = touristSite.title;
       this.calculateRating();
       this.canRate = this.decideCanRate();
     }
