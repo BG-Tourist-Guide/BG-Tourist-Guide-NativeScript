@@ -1,10 +1,9 @@
 'use strict';
 
 let loginViewModel = require('./register-view-model');
-let customAnimations = require('../../../common/custom-animations');
 let dialogs = require('ui/dialogs');
 let frame = require('ui/frame');
-let loader = require('nativescript-loading-indicator');
+let basePage = require('../../common/base-page').defaultInstance;
 let viewModel;
 
 function pageLoaded(args) {
@@ -17,11 +16,11 @@ function pageLoaded(args) {
 function registerBtnTap(args) {
   let button = args.object;
   button.animateTap();
-  loader.show();
+  basePage.loader.show();
 
   viewModel.register()
     .then(function () {
-      loader.hide();
+      basePage.loader.hide();
       dialogs.alert({
         title: 'Registration successfull.',
         message: 'You can now start using the application.',
@@ -34,7 +33,7 @@ function registerBtnTap(args) {
             });
         });
     }, function (err) {
-      loader.hide();
+      basePage.loader.hide();
       dialogs.alert({
         title: 'Registration failed.',
         message: err.message,
@@ -45,5 +44,6 @@ function registerBtnTap(args) {
 
 module.exports = {
   pageLoaded,
-  registerBtnTap
+  registerBtnTap,
+  backBtnTap: basePage.backBtnTap
 };
