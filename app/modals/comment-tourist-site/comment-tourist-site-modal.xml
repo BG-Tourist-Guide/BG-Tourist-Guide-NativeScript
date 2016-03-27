@@ -1,0 +1,10 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" shownModally="pageShownModally" borderRadius="10">
+    <StackLayout padding="15 15" width="100%">
+      <Label text="Comment" class="title" textWrap="true" />
+      <TextView hint="Comment" text="{{ comment }}" editable="true" />
+      <StackLayout orientation="horizontal" horizontalAlignment="center">
+        <Button text="Comment" tap="commentBtnTap" class="btn-success" />
+        <Button text="Cancel" tap="cancelBtnTap" class="btn-default" />
+      </StackLayout>
+    </StackLayout>
+</Page>
