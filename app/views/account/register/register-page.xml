@@ -11,9 +11,9 @@
           <NavigationButton android.systemIcon="ic_menu_back" tap="backBtnTap"/>
       </ActionBar>
   </Page.actionBar>
-  <StackLayout padding="20">
-    <TextField hint="Username" text="{{ userName }}" />
-    <TextField hint="Password" text="{{ password }}" secure="true" />
+  <StackLayout padding="50 20">
+    <TextField hint="Username" text="{{ userName }}" margin="20" />
+    <TextField hint="Password" text="{{ password }}" secure="true" margin="20" />
     <Button class="btn-success" text="Register" tap="registerBtnTap" />
   </StackLayout>
 </Page>
