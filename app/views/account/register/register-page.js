@@ -16,7 +16,9 @@ function pageLoaded(args) {
 function registerBtnTap(args) {
   let button = args.object;
   button.animateTap();
-  basePage.loader.show();
+  basePage.loader.show({
+    message: 'Registering.'
+  });
 
   viewModel.register()
     .then(function () {

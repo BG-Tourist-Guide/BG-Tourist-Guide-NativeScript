@@ -15,7 +15,9 @@ function pageLoaded(args, a) {
 
     page.bindingContext = viewModel;
 
-    basePage.loader.show();
+    basePage.loader.show({
+      message: 'Detecting your position and searching for places near you.'
+    });
 
     viewModel.findTouristSitesNearMe()
       .then(function(data) {
@@ -35,7 +37,9 @@ function searchBtnTap(args) {
   let button = args.object;
   button.animateTap()
     .then(function() {
-      basePage.loader.show();
+      basePage.loader.show({
+        message: 'Searching for tourist sites near you.'
+      });
 
       viewModel.findTouristSitesNearMe()
         .then(function(data) {

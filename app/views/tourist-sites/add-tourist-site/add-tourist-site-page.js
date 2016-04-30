@@ -19,8 +19,8 @@ function addBtnTap(args) {
   button.animateTap()
     .then(function() {
       if (!viewModel.title ||
-      !viewModel.description ||
-      (!viewModel.useMyCurrentLocation && (!viewModel.latitude || !viewModel.longitude))) {
+        !viewModel.description ||
+        (!viewModel.useMyCurrentLocation && (!viewModel.latitude || !viewModel.longitude))) {
         dialogs.alert({
           title: 'Error',
           message: 'The title and descriptions fields are required. If you do not want to use your current location fill the latitude and longitude fields.',
@@ -28,9 +28,11 @@ function addBtnTap(args) {
         });
         return;
       }
-      
-      basePage.loader.show();
-      
+
+      basePage.loader.show({
+        message: 'Saving tourist site information.'
+      });
+
       viewModel.addTouristSite()
         .then(function(createdTouristSite) {
           basePage.loader.hide();
@@ -39,11 +41,11 @@ function addBtnTap(args) {
             message: `Tourist site ${viewModel.title} added successfully. When it is approved it will be added for visiting.`,
             okButtonText: 'OK'
           })
-          .then(function(){
-            frame.topmost()
-              .navigate('./views/main-menu/main-menu-page');
-          });
-        }, function (err) {
+            .then(function() {
+              frame.topmost()
+                .navigate('./views/main-menu/main-menu-page');
+            });
+        }, function(err) {
           basePage.loader.hide();
           dialogs.alert({
             title: 'Error',

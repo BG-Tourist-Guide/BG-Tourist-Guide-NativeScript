@@ -1,7 +1,8 @@
 'use strict';
 let frame = require('ui/frame');
 let customAnimations = require('../../common/custom-animations');
-let loader = require('nativescript-loading-indicator');
+let LoadingIndicator = require('nativescript-loading-indicator').LoadingIndicator;
+let loader = new LoadingIndicator();
 
 class BasePage {
   constructor() {

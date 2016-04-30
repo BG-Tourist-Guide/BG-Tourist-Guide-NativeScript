@@ -63,7 +63,9 @@ function visitBtnTap(args) {
 
   button.animateTap()
     .then(function() {
-      basePage.loader.show();
+      basePage.loader.show({
+        message: 'Marking tourist site as visited.'
+      });
       return viewModel.visitTouristSite();
     })
     .then(function(responsetouristSite) {

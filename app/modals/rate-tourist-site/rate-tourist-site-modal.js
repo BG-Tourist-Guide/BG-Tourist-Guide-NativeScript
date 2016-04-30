@@ -4,7 +4,8 @@ let rateTouristSiteViewModel = require('./rate-tourist-site-view-model');
 let frame = require('ui/frame');
 let Stretch = require('ui/enums').Stretch;
 let customAnimations = require('../../common/custom-animations');
-let loader = require('nativescript-loading-indicator');
+let LoadingIndicator = require('nativescript-loading-indicator').LoadingIndicator;
+let loader = new LoadingIndicator();
 let viewModel;
 
 function pageShownModally(args) {
@@ -20,7 +21,9 @@ function rateBtnTap(args) {
   let page = args.object.page;
   let button = args.object;
   button.animateTap();
-  loader.show();
+  loader.show({
+    message: 'Sending rating.'
+  });
 
   viewModel.rateTouristSite()
     .then(function(data) {

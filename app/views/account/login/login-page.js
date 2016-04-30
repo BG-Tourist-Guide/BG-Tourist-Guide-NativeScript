@@ -16,7 +16,9 @@ function pageLoaded(args) {
 function loginBtnTap(args) {
   let button = args.object;
   button.animateTap();
-  basePage.loader.show();
+  basePage.loader.show({
+    message: 'Logging in.'
+  });
 
   viewModel.login()
     .then(function () {
