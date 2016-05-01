@@ -145,16 +145,18 @@ function createAnimationOptions(target, xOffset) {
   };
 }
 
-let superOnBackPressed = application.android.currentContext.onBackPressed;
+if (application.android) {
+  let superOnBackPressed = application.android.currentContext.onBackPressed;
 
-application.android.currentContext.onBackPressed = function() {
-  if (isMainMenuSlided) {
-    toggleSideMenu();
-    return;
-  }
+  application.android.currentContext.onBackPressed = function() {
+    if (isMainMenuSlided) {
+      toggleSideMenu();
+      return;
+    }
 
-  return superOnBackPressed();
-};
+    return superOnBackPressed();
+  };
+}
 
 application.on(application.orientationChangedEvent, function(args) {
   slMainMenu.x = 0;
