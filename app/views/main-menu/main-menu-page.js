@@ -34,24 +34,9 @@ function pageLoaded(args) {
   slMainMenu = page.getViewById('slMainMenu');
   slSideMenu = page.getViewById('slSideMenu');
 
-  let sideMenuWidthInPercents = parseFloat(slSideMenu.width) / 100;
-  menuOffset = platform.screen.mainScreen.widthDIPs * sideMenuWidthInPercents;
+  menuOffset = calculateMenuOffset();
 
-  slSideMenu.animate({
-    translate: {
-      y: 0,
-      x: -menuOffset
-    },
-    duration: 1
-  });
-
-  slMainMenu.animate({
-    translate: {
-      y: 0,
-      x: 0
-    },
-    duration: 1
-  });
+  orderMenus();
 }
 
 function allBtnTap(args) {
@@ -167,14 +152,40 @@ application.android.currentContext.onBackPressed = function() {
     toggleSideMenu();
     return;
   }
-  
+
   return superOnBackPressed();
 };
 
-application.on(application.orientationChangedEvent, function (args) {
+application.on(application.orientationChangedEvent, function(args) {
   slMainMenu.x = 0;
   slSideMenu.x = 0;
+  menuOffset = calculateMenuOffset();
+
+  orderMenus();
 });
+
+function calculateMenuOffset() {
+  let sideMenuWidthInPercents = parseFloat(slSideMenu.width) / 100;
+  return platform.screen.mainScreen.widthDIPs * sideMenuWidthInPercents;
+}
+
+function orderMenus() {
+  slSideMenu.animate({
+    translate: {
+      y: 0,
+      x: -menuOffset
+    },
+    duration: 1
+  });
+
+  slMainMenu.animate({
+    translate: {
+      y: 0,
+      x: 0
+    },
+    duration: 1
+  });
+}
 
 module.exports = {
   pageLoaded,
