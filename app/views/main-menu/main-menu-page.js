@@ -4,6 +4,15 @@ let mainMenuViewModel = require('./main-menu-view-model');
 let customAnimations = require('../../common/custom-animations');
 let constants = require('../../common/constants');
 let frame = require('ui/frame');
+let animation = require('ui/animation');
+let enums = require('ui/enums');
+let application = require('application');
+let platform = require('platform');
+let isMainMenuSlided = false;
+let menuOffset = 0;
+let animationDuration = 350;
+let slMainMenu;
+let slSideMenu;
 let viewModel;
 
 function pageLoaded(args) {
@@ -21,6 +30,28 @@ function pageLoaded(args) {
   }
 
   page.bindingContext = viewModel;
+
+  slMainMenu = page.getViewById('slMainMenu');
+  slSideMenu = page.getViewById('slSideMenu');
+
+  let sideMenuWidthInPercents = parseFloat(slSideMenu.width) / 100;
+  menuOffset = platform.screen.mainScreen.widthDIPs * sideMenuWidthInPercents;
+
+  slSideMenu.animate({
+    translate: {
+      y: 0,
+      x: -menuOffset
+    },
+    duration: 1
+  });
+
+  slMainMenu.animate({
+    translate: {
+      y: 0,
+      x: 0
+    },
+    duration: 1
+  });
 }
 
 function allBtnTap(args) {
@@ -97,8 +128,57 @@ function logoutBtnTap(args) {
     });
 }
 
+function menuImageTap(args) {
+  let image = args.object;
+  image.animateTap()
+    .then(function() {
+      toggleSideMenu();
+    });
+}
+
+function toggleSideMenu() {
+  let animations = [createAnimationOptions(slMainMenu, isMainMenuSlided ? 0 : menuOffset),
+    createAnimationOptions(slSideMenu, isMainMenuSlided ? -menuOffset : 0)];
+
+  let slideMenusAnimation = new animation.Animation(animations);
+
+  slideMenusAnimation.play()
+    .then(function() {
+      isMainMenuSlided = !isMainMenuSlided;
+    });
+}
+
+function createAnimationOptions(target, xOffset) {
+  return {
+    target: target,
+    translate: {
+      y: 0,
+      x: xOffset
+    },
+    duration: animationDuration,
+    curve: enums.AnimationCurve.easeInOut
+  };
+}
+
+let superOnBackPressed = application.android.currentContext.onBackPressed;
+
+application.android.currentContext.onBackPressed = function() {
+  if (isMainMenuSlided) {
+    toggleSideMenu();
+    return;
+  }
+  
+  return superOnBackPressed();
+};
+
+application.on(application.orientationChangedEvent, function (args) {
+  slMainMenu.x = 0;
+  slSideMenu.x = 0;
+});
+
 module.exports = {
   pageLoaded,
+  menuImageTap,
   nearMeBtnTap,
   allBtnTap,
   officialBtnTap,
