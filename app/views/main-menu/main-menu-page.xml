@@ -12,7 +12,7 @@
         </StackLayout>
       </ScrollView>
     </StackLayout>
-    <StackLayout id="slMainMenu" width="100%">
+    <StackLayout id="slMainMenu" width="100%" tap="slMainMenuTap" height="100%">
       <StackLayout horizontalAlignment="center"
           backgroundColor="#2fa4e7"
           width="100%">
@@ -26,7 +26,10 @@
         </StackLayout>
       </StackLayout>    
       <ScrollView marginTop="20">
-        <Button class="btn-success" text="Near me" tap="nearMeBtnTap" />
+        <StackLayout>
+          <Button class="btn-success" text="Near me" tap="nearMeBtnTap" />
+          <Button class="btn-success" text="Scan QR Code" tap="scanQrCodeBtnTap" />
+        </StackLayout>
       </ScrollView>
     </StackLayout>
   </AbsoluteLayout>

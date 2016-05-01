@@ -121,6 +121,12 @@ function menuImageTap(args) {
     });
 }
 
+function slMainMenuTap(args) {
+  if (isMainMenuSlided) {
+    toggleSideMenu();
+  }
+}
+
 function toggleSideMenu() {
   let animations = [createAnimationOptions(slMainMenu, isMainMenuSlided ? 0 : menuOffset),
     createAnimationOptions(slSideMenu, isMainMenuSlided ? -menuOffset : 0)];
@@ -197,5 +203,6 @@ module.exports = {
   officialBtnTap,
   unofficialBtnTap,
   addNewBtnTap,
-  logoutBtnTap
+  logoutBtnTap,
+  slMainMenuTap
 };
