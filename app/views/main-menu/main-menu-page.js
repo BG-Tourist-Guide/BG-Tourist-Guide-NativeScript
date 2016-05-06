@@ -1,14 +1,15 @@
 'use strict';
 
-let mainMenuViewModel = require('./main-menu-view-model');
-let customAnimations = require('../../common/custom-animations');
-let constants = require('../../common/constants');
 let frame = require('ui/frame');
 let animation = require('ui/animation');
 let enums = require('ui/enums');
 let gestures = require('ui/gestures');
+let dialogs = require('ui/dialogs');
 let application = require('application');
 let platform = require('platform');
+let mainMenuViewModel = require('./main-menu-view-model');
+let customAnimations = require('../../common/custom-animations');
+let constants = require('../../common/constants');
 let swipeGesturesAdded = false;
 let isMainMenuSlided = false;
 let menuOffset = 0;
@@ -43,6 +44,27 @@ function pageLoaded(args) {
   menuOffset = calculateMenuOffset();
 
   orderMenus();
+}
+
+function scanQrCodeBtnTap(args) {
+  let button = args.object;
+  button.animateTap()
+    .then(function() {
+      return viewModel.scanQrCode();
+    })
+    .then(function(visitedTouristSite) {
+      dialogs.alert({
+        title: 'Success.',
+        message: `${visitedTouristSite.title} visited successfully.`,
+        okButtonText: 'OK'
+      });
+    }, function(error) {
+      dialogs.alert({
+        title: 'Error.',
+        message: 'Cannot scan QR Code. Please try again.',
+        okButtonText: 'OK'
+      });
+    });
 }
 
 function allBtnTap(args) {
@@ -230,6 +252,7 @@ module.exports = {
   pageLoaded,
   menuImageTap,
   nearMeBtnTap,
+  scanQrCodeBtnTap,
   allBtnTap,
   officialBtnTap,
   unofficialBtnTap,

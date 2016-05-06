@@ -47,6 +47,7 @@ function addBtnTap(args) {
             });
         }, function(err) {
           basePage.loader.hide();
+          console.dir(err);
           dialogs.alert({
             title: 'Error',
             message: `Tourist site ${viewModel.title} was not added. Please try again when you have internet connection and try again later.`,
