@@ -26,7 +26,8 @@ class GeolocationHelper {
       geolocation.getCurrentLocation(configuration)
         .then(function(location) {
           if (settings.isCacheEnabled()) {
-            cacheService.addItem(location);
+            let cacheDuration = settings.cacheDuration();
+            cacheService.addItem(constants.CACHE_LOCATION_KEY, location, cacheDuration);
           }
           
           resolve(location);
