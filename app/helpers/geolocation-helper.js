@@ -2,6 +2,9 @@
 
 let geolocation = require('nativescript-geolocation');
 let requester = require('../web/requester').defaultInstance;
+let cacheService = require('../common/cache/cache-service');
+let constants = require('../common/constants');
+let settings = require('../common/settings');
 
 class GeolocationHelper {
   isEnabled() {
@@ -13,9 +16,21 @@ class GeolocationHelper {
   }
 
   getCurrentLocation(configuration) {
+    if (settings.isCacheEnabled() && cacheService.hasItem(constants.CACHE_LOCATION_KEY)) {
+      return new Promise(function (resolve, reject) {
+        resolve(cacheService.getItem(constants.CACHE_LOCATION_KEY));
+      });
+    }
+    
     let promise = new Promise(function (resolve, reject) {
       geolocation.getCurrentLocation(configuration)
-        .then(resolve, function (err) {
+        .then(function(location) {
+          if (settings.isCacheEnabled()) {
+            cacheService.addItem(location);
+          }
+          
+          resolve(location);
+        }, function (err) {
           return requester.getJsonAsync('http://ipinfo.io/json', true);
         })
         .then(function (response) {          
