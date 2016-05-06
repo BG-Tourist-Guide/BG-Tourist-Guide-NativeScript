@@ -202,8 +202,14 @@ if (application.android) {
 }
 
 application.on(application.orientationChangedEvent, function(args) {
-  slMainMenu.x = 0;
-  slSideMenu.x = 0;
+  if (!slMainMenu || !slSideMenu) {
+    // For some reason on iOS this method is called before the page loaded method.
+    return;
+  }
+
+  // Use originX not x because x is readonly property and when running on iOS it fails.
+  slMainMenu.originX = 0;
+  slSideMenu.originX = 0;
   menuOffset = calculateMenuOffset();
 
   orderMenus();
