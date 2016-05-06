@@ -6,8 +6,10 @@ let constants = require('../../common/constants');
 let frame = require('ui/frame');
 let animation = require('ui/animation');
 let enums = require('ui/enums');
+let gestures = require('ui/gestures');
 let application = require('application');
 let platform = require('platform');
+let swipeGesturesAdded = false;
 let isMainMenuSlided = false;
 let menuOffset = 0;
 let animationDuration = 350;
@@ -17,6 +19,7 @@ let viewModel;
 
 function pageLoaded(args) {
   let page = args.object;
+  isMainMenuSlided = false;
   viewModel = new mainMenuViewModel.MainMenuViewModel();
 
   if (!viewModel.currentUser) {
@@ -32,7 +35,10 @@ function pageLoaded(args) {
   page.bindingContext = viewModel;
 
   slMainMenu = page.getViewById('slMainMenu');
+
   slSideMenu = page.getViewById('slSideMenu');
+
+  addOnSwipeListeners(slMainMenu, slSideMenu);
 
   menuOffset = calculateMenuOffset();
 
@@ -175,6 +181,22 @@ application.on(application.orientationChangedEvent, function(args) {
 function calculateMenuOffset() {
   let sideMenuWidthInPercents = parseFloat(slSideMenu.width) / 100;
   return platform.screen.mainScreen.widthDIPs * sideMenuWidthInPercents;
+}
+
+function addOnSwipeListeners(slMainMenu, slSideMenu) {
+  if (swipeGesturesAdded) {
+    return;
+  }
+  
+  let gestureCallback = function(args) {
+    if ((args.direction === 1 && !isMainMenuSlided) || (args.direction === 2 && isMainMenuSlided)) {
+      toggleSideMenu();
+    }
+  };
+
+  slMainMenu.on(gestures.GestureTypes.swipe, gestureCallback);
+  slSideMenu.on(gestures.GestureTypes.swipe, gestureCallback);
+  swipeGesturesAdded = true;
 }
 
 function orderMenus() {
