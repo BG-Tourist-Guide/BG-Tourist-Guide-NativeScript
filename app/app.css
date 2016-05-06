@@ -109,3 +109,9 @@ button {
   width: 100%;
   height: 1;
 }
+
+.settings-item-container {
+  border-radius: 5;
+  border-width: 3;
+  border-collapse: #cccccc;
+}

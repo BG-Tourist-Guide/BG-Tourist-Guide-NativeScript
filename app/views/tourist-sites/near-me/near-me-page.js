@@ -16,7 +16,7 @@ function pageLoaded(args, a) {
     page.bindingContext = viewModel;
 
     basePage.loader.show({
-      message: 'Detecting your position and searching for places near you.'
+      message: 'Detecting your location and searching for places near you.'
     });
 
     viewModel.findTouristSitesNearMe()

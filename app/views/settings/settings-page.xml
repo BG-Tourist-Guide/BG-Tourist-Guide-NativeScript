@@ -1,0 +1,32 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <Page.actionBar>
+    <ActionBar>
+      <ActionBar.titleView>
+        <StackLayout orientation="horizontal"
+          ios:horizontalAlignment="center"
+          android:horizontalAlignment="left">
+          <Label text="{{ pageTitle }}" class="action-bar-title" />
+        </StackLayout>
+      </ActionBar.titleView>
+        <NavigationButton android.systemIcon="ic_menu_back" tap="backBtnTap"/>
+    </ActionBar>
+  </Page.actionBar>
+  <StackLayout padding="20 20 0 20">
+    <ScrollView>
+      <StackLayout>
+        <GridLayout class="settings-item-container" rows="*" columns="*, *">
+          <Label fontSize="22" text="Cache" textWrap="true" horizontalAlignment="center" row="0" col="0" />
+          <Switch checked="{{ cacheEnabled }}" row="0" col="1" />
+        </GridLayout>        
+        <StackLayout class="settings-item-container" marginTop="30">
+          <Label fontSize="22" text="Cache duration" textWrap="true" marginTop="50" horizontalAlignment="center" />
+          <ListPicker items="{{ cacheDurations }}" selectedIndex="{{ selectedCacheDuration }}"></ListPicker>
+        </StackLayout>
+        <GridLayout rows="*" columns="*, *" marginTop="50">
+          <Button class="btn-info" text="Clear cache" tap="clearCacheBtnTap" row="0" col="0" />
+          <Button class="btn-success" text="Save" tap="saveBtnTap" row="0" col="1" />
+        </GridLayout>
+      </StackLayout>
+    </ScrollView>
+</StackLayout>
+</Page>

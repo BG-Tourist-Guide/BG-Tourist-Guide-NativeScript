@@ -8,6 +8,7 @@
           <Button class="btn-warning" text="Official tourist sites" tap="officialBtnTap" />
           <Button class="btn-warning" text="Unofficial tourist sites" tap="unofficialBtnTap" />
           <Button class="btn-warning" text="Add new tourist site" tap="addNewBtnTap" />
+          <Button class="btn-warning" text="Settings" tap="settingsBtnTap" />
           <Button class="btn-warning" text="Logout" tap="logoutBtnTap" />
         </StackLayout>
       </ScrollView>

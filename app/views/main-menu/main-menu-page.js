@@ -105,6 +105,15 @@ function addNewBtnTap(args) {
     });
 }
 
+function settingsBtnTap(args) {
+  let button = args.object;
+  button.animateTap()
+    .then(function() {
+      frame.topmost()
+        .navigate('./views/settings/settings-page');
+    });
+}
+
 function logoutBtnTap(args) {
   let button = args.object;
   button.animateTap()
@@ -187,7 +196,7 @@ function addOnSwipeListeners(slMainMenu, slSideMenu) {
   if (swipeGesturesAdded) {
     return;
   }
-  
+
   let gestureCallback = function(args) {
     if ((args.direction === 1 && !isMainMenuSlided) || (args.direction === 2 && isMainMenuSlided)) {
       toggleSideMenu();
@@ -225,6 +234,7 @@ module.exports = {
   officialBtnTap,
   unofficialBtnTap,
   addNewBtnTap,
+  settingsBtnTap,
   logoutBtnTap,
   slMainMenuTap
 };

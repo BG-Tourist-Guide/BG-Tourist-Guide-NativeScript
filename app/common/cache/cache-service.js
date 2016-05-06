@@ -31,6 +31,7 @@ class CacheService {
     
     if (hasKey) {
       let item = JSON.parse(applicationSettings.getString(key));
+      item.expirationDate = new Date(item.expirationDate);
       
       if (item.expirationDate > new Date()) {
         return true;
@@ -55,4 +56,4 @@ class CacheService {
   }
 }
 
-module.exports = CacheService;
+module.exports = new CacheService();
