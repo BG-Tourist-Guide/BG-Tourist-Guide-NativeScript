@@ -23,20 +23,9 @@ function pageLoaded(args) {
   isMainMenuSlided = false;
   viewModel = new mainMenuViewModel.MainMenuViewModel();
 
-  if (!viewModel.currentUser) {
-    frame.topmost()
-      .navigate({
-        backstackVisible: false,
-        moduleName: './views/account/account-page'
-      });
-
-    return;
-  }
-
   page.bindingContext = viewModel;
 
   slMainMenu = page.getViewById('slMainMenu');
-
   slSideMenu = page.getViewById('slSideMenu');
 
   addOnSwipeListeners(slMainMenu, slSideMenu);
@@ -205,6 +194,11 @@ application.on(application.orientationChangedEvent, function(args) {
   if (!slMainMenu || !slSideMenu) {
     // For some reason on iOS this method is called before the page loaded method.
     return;
+  }
+  
+  // Need to add the swipe callbacks again because on iOS they are lost on orientation change.
+  if (application.ios) {
+    addOnSwipeListeners(slMainMenu, slSideMenu);
   }
 
   // Use originX not x because x is readonly property and when running on iOS it fails.

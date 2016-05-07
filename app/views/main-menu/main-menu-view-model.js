@@ -10,7 +10,6 @@ class MainMenuViewModel extends Observable {
   constructor() {
     super();
     this.title = 'BG Tourist Guide';
-    this.currentUser = users.getCurrentUserFromLocalStorage();
   }
 
   logout() {
