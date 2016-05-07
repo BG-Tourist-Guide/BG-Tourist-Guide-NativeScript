@@ -10,6 +10,7 @@ class MainMenuViewModel extends Observable {
   constructor() {
     super();
     this.title = 'BG Tourist Guide';
+    this.currentUser = users.getCurrentUserFromLocalStorage();
   }
 
   logout() {
@@ -17,18 +18,18 @@ class MainMenuViewModel extends Observable {
   }
 
   scanQrCode() {
-    let promise = new Promise(function(resolve, reject) {
+    let promise = new Promise(function (resolve, reject) {
       barcodeScanner.available()
-        .then(function(available) {
+        .then(function (available) {
           if (available) {
             barcodeScanner.hasCameraPermission()
-              .then(function(granted) {
+              .then(function (granted) {
                 if (granted) {
                   barcodeScanner.scan({
                     cancelLabel: "Stop scanning", // iOS only, default 'Close'.
                     showFlipCameraButton: true,   // Android only, default false (on iOS it's always available). 
                   })
-                    .then(function(result) {
+                    .then(function (result) {
                       if (!result.text) {
                         reject({
                           message: "Invalid barcode"
@@ -43,7 +44,7 @@ class MainMenuViewModel extends Observable {
                     }, reject);
                 } else {
                   barcodeScanner.requestCameraPermission()
-                    .then(function() {
+                    .then(function () {
                       console.log("Camera permission requested");
                     });
                 }
