@@ -34,3 +34,6 @@ node_modules
 
 # Platforms directory
 platforms
+
+# iOS built libraries
+lib

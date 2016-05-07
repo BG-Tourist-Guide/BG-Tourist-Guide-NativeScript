@@ -31,6 +31,7 @@ function registerBtnTap(args) {
         .then(function () {
           frame.topmost()
             .navigate({
+              clearHistory: true,
               moduleName: './views/main-menu/main-menu-page'
             });
         });

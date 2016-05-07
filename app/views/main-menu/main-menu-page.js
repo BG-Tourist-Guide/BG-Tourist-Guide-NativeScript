@@ -23,6 +23,16 @@ function pageLoaded(args) {
   isMainMenuSlided = false;
   viewModel = new mainMenuViewModel.MainMenuViewModel();
 
+  if (!viewModel.currentUser) {
+    frame.topmost()
+      .navigate({
+        backstackVisible: false,
+        moduleName: './views/account/account-page'
+      });
+
+    return;
+  }
+
   page.bindingContext = viewModel;
 
   slMainMenu = page.getViewById('slMainMenu');
@@ -38,16 +48,16 @@ function pageLoaded(args) {
 function scanQrCodeBtnTap(args) {
   let button = args.object;
   button.animateTap()
-    .then(function() {
+    .then(function () {
       return viewModel.scanQrCode();
     })
-    .then(function(visitedTouristSite) {
+    .then(function (visitedTouristSite) {
       dialogs.alert({
         title: 'Success.',
         message: `${visitedTouristSite.title} visited successfully.`,
         okButtonText: 'OK'
       });
-    }, function(error) {
+    }, function (error) {
       dialogs.alert({
         title: 'Error.',
         message: 'Cannot scan QR Code. Please try again.',
@@ -59,7 +69,7 @@ function scanQrCodeBtnTap(args) {
 function allBtnTap(args) {
   let button = args.object;
   button.animateTap()
-    .then(function() {
+    .then(function () {
       frame.topmost()
         .navigate({
           moduleName: './views/tourist-sites/list-tourist-sites/list-tourist-sites-page',
@@ -73,7 +83,7 @@ function allBtnTap(args) {
 function officialBtnTap(args) {
   let button = args.object;
   button.animateTap()
-    .then(function() {
+    .then(function () {
       frame.topmost()
         .navigate({
           moduleName: './views/tourist-sites/list-tourist-sites/list-tourist-sites-page',
@@ -87,7 +97,7 @@ function officialBtnTap(args) {
 function unofficialBtnTap(args) {
   let button = args.object;
   button.animateTap()
-    .then(function() {
+    .then(function () {
       frame.topmost()
         .navigate({
           moduleName: './views/tourist-sites/list-tourist-sites/list-tourist-sites-page',
@@ -101,7 +111,7 @@ function unofficialBtnTap(args) {
 function nearMeBtnTap(args) {
   let button = args.object;
   button.animateTap()
-    .then(function() {
+    .then(function () {
       frame.topmost()
         .navigate('./views/tourist-sites/near-me/near-me-page');
     });
@@ -110,7 +120,7 @@ function nearMeBtnTap(args) {
 function addNewBtnTap(args) {
   let button = args.object;
   button.animateTap()
-    .then(function() {
+    .then(function () {
       frame.topmost()
         .navigate('./views/tourist-sites/add-tourist-site/add-tourist-site-page');
     });
@@ -119,7 +129,7 @@ function addNewBtnTap(args) {
 function settingsBtnTap(args) {
   let button = args.object;
   button.animateTap()
-    .then(function() {
+    .then(function () {
       frame.topmost()
         .navigate('./views/settings/settings-page');
     });
@@ -128,11 +138,12 @@ function settingsBtnTap(args) {
 function logoutBtnTap(args) {
   let button = args.object;
   button.animateTap()
-    .then(function() {
+    .then(function () {
       viewModel.logout();
 
       frame.topmost()
         .navigate({
+          clearHistory: true,
           backstackVisible: true,
           moduleName: './views/account/account-page'
         });
@@ -142,7 +153,7 @@ function logoutBtnTap(args) {
 function menuImageTap(args) {
   let image = args.object;
   image.animateTap()
-    .then(function() {
+    .then(function () {
       toggleSideMenu();
     });
 }
@@ -160,7 +171,7 @@ function toggleSideMenu() {
   let slideMenusAnimation = new animation.Animation(animations);
 
   slideMenusAnimation.play()
-    .then(function() {
+    .then(function () {
       isMainMenuSlided = !isMainMenuSlided;
     });
 }
@@ -180,7 +191,7 @@ function createAnimationOptions(target, xOffset) {
 if (application.android) {
   let superOnBackPressed = application.android.currentContext.onBackPressed;
 
-  application.android.currentContext.onBackPressed = function() {
+  application.android.currentContext.onBackPressed = function () {
     if (isMainMenuSlided) {
       toggleSideMenu();
       return;
@@ -190,12 +201,12 @@ if (application.android) {
   };
 }
 
-application.on(application.orientationChangedEvent, function(args) {
+application.on(application.orientationChangedEvent, function (args) {
   if (!slMainMenu || !slSideMenu) {
     // For some reason on iOS this method is called before the page loaded method.
     return;
   }
-  
+
   // Need to add the swipe callbacks again because on iOS they are lost on orientation change.
   if (application.ios) {
     addOnSwipeListeners(slMainMenu, slSideMenu);
@@ -219,7 +230,7 @@ function addOnSwipeListeners(slMainMenu, slSideMenu) {
     return;
   }
 
-  let gestureCallback = function(args) {
+  let gestureCallback = function (args) {
     if ((args.direction === 1 && !isMainMenuSlided) || (args.direction === 2 && isMainMenuSlided)) {
       toggleSideMenu();
     }
